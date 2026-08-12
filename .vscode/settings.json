@@ -1,0 +1,53 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-recorder",
+                "%DOC%"
+            ]
+        }
+    ],
+
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex",
+            "tools": [
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex duas vezes",
+            "tools": [
+                "pdflatex",
+                "pdflatex"
+            ]
+        }
+    ],
+
+    "latex-workshop.latex.recipe.default": "first",
+
+    "latex-workshop.latex.autoBuild.run": "never",
+
+    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+
+    "latex-workshop.latex.clean.method": "glob",
+
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.fdb_latexmk",
+        "*.fls",
+        "*.log",
+        "*.out",
+        "*.synctex.gz",
+        "*.toc"
+    ],
+
+    "latex-workshop.view.pdf.viewer": "tab"
+}

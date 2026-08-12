@@ -1,0 +1,2660 @@
+% !LW recipe = pdflatex
+
+\documentclass[12pt,a4paper]{article}
+
+% -------------------------------------------------
+% Encoding and language
+% -------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% -------------------------------------------------
+% Mathematics
+% -------------------------------------------------
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% -------------------------------------------------
+% Graphics
+% -------------------------------------------------
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+
+% -------------------------------------------------
+% Tables and lists
+% -------------------------------------------------
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+% -------------------------------------------------
+% Hyperlinks
+% -------------------------------------------------
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+]{hyperref}
+
+% -------------------------------------------------
+% Margins
+% -------------------------------------------------
+
+\usepackage{geometry}
+
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+% -------------------------------------------------
+% Theorem environments
+% -------------------------------------------------
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{question}{Research Question}[section]
+\newtheorem{example}{Example}[section]
+
+% -------------------------------------------------
+% Commands
+% -------------------------------------------------
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+
+% -------------------------------------------------
+
+\title{Monomial Exponential Series}
+\author{Timóteo Cruz}
+\date{\today}
+
+% =================================================
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+% =================================================
+\section{Introduction}
+% =================================================
+
+We begin with the family of series
+
+\[
+F(x)
+=
+a_0
++
+a_1b^{x^2}
++
+a_2b^{x^3}
++
+a_3b^{x^4}
++\cdots.
+\]
+
+A slightly cleaner indexing is obtained by writing
+
+\[
+F(x)
+=
+a_0+\sum_{n=1}^{\infty}c_n b^{x^n}.
+\]
+
+Throughout this text we assume
+
+\[
+b>0,
+\qquad
+b\neq1.
+\]
+
+It will often be useful to introduce
+
+\[
+\lambda=\ln b.
+\]
+
+Since
+
+\[
+b^{x^n}
+=
+e^{(\ln b)x^n},
+\]
+
+the series can equivalently be written as
+
+\[
+\boxed{
+F(x)
+=
+a_0+\sum_{n=1}^{\infty}c_n e^{\lambda x^n}.
+}
+\]
+
+We shall provisionally call such an expression a
+\emph{monomial exponential series}.
+
+The purpose of this document is not to claim that this family of
+functions has never appeared before, but rather to investigate the
+structures that naturally arise from it.
+
+In particular, we shall see connections with
+
+\[
+\text{composition}
+\longleftrightarrow
+\text{multiplication of indices},
+\]
+
+\[
+\text{divisibility}
+\longleftrightarrow
+\text{reachability between blocks},
+\]
+
+and, surprisingly,
+
+\[
+\text{composition operators}
+\longleftrightarrow
+\text{Dirichlet convolution}.
+\]
+
+% =================================================
+\section{Isolating the Basic Blocks}
+% =================================================
+
+Let us forget the coefficients for a moment and isolate the functions
+
+\[
+\boxed{
+\phi_n(x)=b^{x^n}.
+}
+\]
+
+Equivalently,
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+The first blocks are
+
+\[
+\phi_1(x)=b^x,
+\]
+
+\[
+\phi_2(x)=b^{x^2},
+\]
+
+\[
+\phi_3(x)=b^{x^3},
+\]
+
+\[
+\phi_4(x)=b^{x^4},
+\]
+
+and so on.
+
+Our series is therefore a linear combination of these blocks:
+
+\[
+\boxed{
+F(x)=a_0+\sum_{n=1}^{\infty}c_n\phi_n(x).
+}
+\]
+
+Thus the family
+
+\[
+\mathcal{B}
+=
+\{
+1,\phi_1,\phi_2,\phi_3,\ldots
+\}
+\]
+
+plays a role analogous to the familiar monomial family
+
+\[
+\{
+1,x,x^2,x^3,\ldots
+\}.
+\]
+
+However, its algebraic and analytic behaviour is very different.
+
+% =================================================
+\section{Connection with Ordinary Monomials}
+% =================================================
+
+The blocks are obtained directly from the ordinary monomials.
+
+Let
+
+\[
+q_n(x)=x^n.
+\]
+
+Then
+
+\[
+\phi_n(x)=b^{q_n(x)}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n=\exp_b\circ q_n,
+}
+\]
+
+where
+
+\[
+\exp_b(y)=b^y.
+\]
+
+This observation is important because some of the structure we shall
+discover is inherited from the monomials themselves.
+
+For example,
+
+\[
+q_n(q_m(x))
+=
+(x^m)^n
+=
+x^{mn}.
+\]
+
+Thus
+
+\[
+\boxed{
+q_n\circ q_m=q_{mn}.
+}
+\]
+
+The monomials already encode multiplication of their indices through
+composition.
+
+The exponential blocks preserve this structure after exponentiation.
+
+This distinction will be important:
+
+\begin{quote}
+The multiplicative behaviour of the indices is inherited from the
+monomials \(x^n\), while the new questions arise from taking linear
+combinations of the exponentiated monomials \(b^{x^n}\).
+\end{quote}
+
+% =================================================
+\section{Composition by Powers}
+% =================================================
+
+Consider
+
+\[
+\phi_n(x)=b^{x^n}.
+\]
+
+Replace \(x\) by \(x^m\). Then
+
+\[
+\phi_n(x^m)
+=
+b^{(x^m)^n}
+=
+b^{x^{mn}}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n(x^m)=\phi_{mn}(x).
+}
+\]
+
+For example,
+
+\[
+\phi_2(x^3)
+=
+b^{(x^3)^2}
+=
+b^{x^6}
+=
+\phi_6(x),
+\]
+
+while
+
+\[
+\phi_3(x^2)
+=
+b^{(x^2)^3}
+=
+b^{x^6}
+=
+\phi_6(x).
+\]
+
+Hence
+
+\[
+\boxed{
+\phi_2(x^3)
+=
+\phi_3(x^2)
+=
+\phi_6(x).
+}
+\]
+
+More generally,
+
+\[
+\boxed{
+\phi_n(x^m)
+=
+\phi_m(x^n)
+=
+\phi_{mn}(x).
+}
+\]
+
+Thus multiplication of natural-number indices corresponds to
+composition with power maps.
+
+% =================================================
+\section{Composition Operators}
+% =================================================
+
+The previous phenomenon becomes clearer if we introduce an operator.
+
+For every \(m\in\N\), define
+
+\[
+\boxed{
+T_mF(x)=F(x^m).
+}
+\]
+
+Then, when \(T_m\) acts on one of our basic blocks,
+
+\[
+T_m\phi_n(x)
+=
+\phi_n(x^m).
+\]
+
+Therefore
+
+\[
+\boxed{
+T_m\phi_n=\phi_{mn}.
+}
+\]
+
+Now consider two such operators:
+
+\[
+T_mT_nF(x).
+\]
+
+We first apply \(T_n\):
+
+\[
+T_nF(x)=F(x^n).
+\]
+
+Then
+
+\[
+T_mT_nF(x)
+=
+F((x^m)^n)
+=
+F(x^{mn}).
+\]
+
+Hence
+
+\[
+\boxed{
+T_mT_n=T_{mn}.
+}
+\]
+
+Since multiplication of natural numbers is commutative,
+
+\[
+mn=nm,
+\]
+
+we also have
+
+\[
+\boxed{
+T_mT_n=T_nT_m.
+}
+\]
+
+Finally,
+
+\[
+T_1F(x)=F(x),
+\]
+
+so
+
+\[
+\boxed{
+T_1=I.
+}
+\]
+
+We therefore obtain the same algebraic laws as the multiplicative
+monoid
+
+\[
+(\N,\cdot).
+\]
+
+% =================================================
+\section{Prime Factorisation as Operator Factorisation}
+% =================================================
+
+Suppose
+
+\[
+n
+=
+p_1^{\alpha_1}
+p_2^{\alpha_2}
+\cdots
+p_r^{\alpha_r}
+\]
+
+is the prime factorisation of \(n\).
+
+Because
+
+\[
+T_mT_n=T_{mn},
+\]
+
+we obtain
+
+\[
+\boxed{
+T_n
+=
+T_{p_1}^{\alpha_1}
+T_{p_2}^{\alpha_2}
+\cdots
+T_{p_r}^{\alpha_r}.
+}
+\]
+
+For example,
+
+\[
+12=2^2\cdot3,
+\]
+
+and therefore
+
+\[
+\boxed{
+T_{12}=T_2^2T_3.
+}
+\]
+
+Acting on \(\phi_1\),
+
+\[
+T_{12}\phi_1=\phi_{12}.
+\]
+
+But we may reach the same block through
+
+\[
+T_2T_2T_3\phi_1.
+\]
+
+Thus prime factorisation of integers becomes factorisation of
+composition operators.
+
+This suggests that the operators
+
+\[
+T_2,T_3,T_5,T_7,\ldots
+\]
+
+play the role of fundamental generators.
+
+% =================================================
+\section{Divisibility as Reachability}
+% =================================================
+
+We now obtain a direct interpretation of divisibility.
+
+Suppose \(d,n\in\N\).
+
+If
+
+\[
+d\mid n,
+\]
+
+then there exists an integer \(m\) such that
+
+\[
+n=dm.
+\]
+
+Consequently,
+
+\[
+T_m\phi_d
+=
+\phi_{dm}
+=
+\phi_n.
+\]
+
+Therefore
+
+\[
+\boxed{
+d\mid n
+\quad\Longleftrightarrow\quad
+\phi_n
+\text{ can be reached from }
+\phi_d
+\text{ by some }T_m.
+}
+\]
+
+This allows us to interpret the divisibility relation geometrically as
+a network of function transformations.
+
+For example,
+
+\[
+\phi_2
+\longrightarrow
+\phi_4
+\longrightarrow
+\phi_8
+\]
+
+corresponds to
+
+\[
+2\mid4\mid8.
+\]
+
+Similarly,
+
+\[
+\phi_3
+\longrightarrow
+\phi_6
+\longrightarrow
+\phi_{12}
+\]
+
+corresponds to
+
+\[
+3\mid6\mid12.
+\]
+
+% =================================================
+\section{A Divisibility Diagram}
+% =================================================
+
+The relation can be visualised using a small portion of the
+divisibility lattice.
+
+\begin{center}
+
+\begin{tikzpicture}[
+    node distance=1.5cm and 1.7cm,
+    every node/.style={draw,rounded corners,inner sep=5pt},
+    >=Stealth
+]
+
+\node (p1) {$\phi_1$};
+
+\node (p2) [below left=of p1] {$\phi_2$};
+\node (p3) [below right=of p1] {$\phi_3$};
+
+\node (p4) [below=of p2] {$\phi_4$};
+\node (p6) [below right=of p2] {$\phi_6$};
+
+\node (p12) [below right=of p4] {$\phi_{12}$};
+
+\draw[->] (p1) -- node[left,draw=none] {$T_2$} (p2);
+\draw[->] (p1) -- node[right,draw=none] {$T_3$} (p3);
+
+\draw[->] (p2) -- node[left,draw=none] {$T_2$} (p4);
+\draw[->] (p2) -- node[above,draw=none] {$T_3$} (p6);
+
+\draw[->] (p3) -- node[right,draw=none] {$T_2$} (p6);
+
+\draw[->] (p4) -- node[left,draw=none] {$T_3$} (p12);
+\draw[->] (p6) -- node[right,draw=none] {$T_2$} (p12);
+
+\end{tikzpicture}
+
+\end{center}
+
+Different paths may lead to the same function because multiplication
+is commutative.
+
+For example,
+
+\[
+T_2T_3\phi_1
+=
+T_3T_2\phi_1
+=
+\phi_6.
+\]
+
+% =================================================
+\section{Greatest Common Divisors and Least Common Multiples}
+% =================================================
+
+The divisibility interpretation also introduces naturally the
+greatest common divisor and least common multiple.
+
+Take two blocks
+
+\[
+\phi_m
+\qquad\text{and}\qquad
+\phi_n.
+\]
+
+A block \(\phi_d\) is a common predecessor when
+
+\[
+d\mid m
+\qquad\text{and}\qquad
+d\mid n.
+\]
+
+The largest possible such index is
+
+\[
+d=\gcd(m,n).
+\]
+
+Thus
+
+\[
+\boxed{
+\phi_{\gcd(m,n)}
+}
+\]
+
+is the greatest common predecessor of \(\phi_m\) and \(\phi_n\).
+
+Similarly, a block \(\phi_k\) is a common descendant if
+
+\[
+m\mid k
+\qquad\text{and}\qquad
+n\mid k.
+\]
+
+The smallest such index is
+
+\[
+k=\operatorname{lcm}(m,n).
+\]
+
+Hence
+
+\[
+\boxed{
+\phi_{\operatorname{lcm}(m,n)}
+}
+\]
+
+is the smallest common descendant.
+
+For example,
+
+\[
+\gcd(4,6)=2
+\]
+
+and
+
+\[
+\operatorname{lcm}(4,6)=12.
+\]
+
+Therefore
+
+\[
+\phi_2
+\]
+
+is the greatest common predecessor of
+
+\[
+\phi_4,\phi_6,
+\]
+
+while
+
+\[
+\phi_{12}
+\]
+
+is their smallest common descendant.
+
+% =================================================
+\section{Prime Blocks are Indecomposable}
+% =================================================
+
+Consider
+
+\[
+\phi_6(x)=b^{x^6}.
+\]
+
+Because
+
+\[
+6=2\cdot3,
+\]
+
+we can write
+
+\[
+\phi_6(x)
+=
+\phi_2(x^3)
+=
+\phi_3(x^2).
+\]
+
+Similarly,
+
+\[
+12=2\cdot6=3\cdot4,
+\]
+
+so
+
+\[
+\phi_{12}(x)
+=
+\phi_2(x^6)
+=
+\phi_3(x^4)
+=
+\phi_4(x^3)
+=
+\phi_6(x^2).
+\]
+
+However, suppose \(p\) is prime.
+
+If
+
+\[
+\phi_p(x)=\phi_m(x^n)
+\]
+
+with
+
+\[
+m>1,
+\qquad
+n>1,
+\]
+
+then we would have
+
+\[
+p=mn,
+\]
+
+contradicting the primality of \(p\).
+
+Therefore prime-indexed blocks are indecomposable under non-trivial
+power composition.
+
+\begin{proposition}
+
+If \(p\) is prime, then there do not exist \(m,n>1\) such that
+
+\[
+\phi_p(x)=\phi_m(x^n).
+\]
+
+\end{proposition}
+
+% =================================================
+\section{Composition Acting on the Coefficients}
+% =================================================
+
+Now consider
+
+\[
+F(x)
+=
+\sum_{n\geq1}c_n\phi_n(x).
+\]
+
+Applying \(T_m\), we obtain
+
+\[
+T_mF(x)
+=
+F(x^m).
+\]
+
+Therefore
+
+\[
+F(x^m)
+=
+\sum_{n\geq1}c_n\phi_n(x^m).
+\]
+
+Using
+
+\[
+\phi_n(x^m)=\phi_{mn}(x),
+\]
+
+we obtain
+
+\[
+\boxed{
+T_mF
+=
+\sum_{n\geq1}c_n\phi_{mn}.
+}
+\]
+
+For \(m=2\),
+
+\[
+T_2F
+=
+c_1\phi_2
++
+c_2\phi_4
++
+c_3\phi_6
++
+c_4\phi_8
++\cdots.
+\]
+
+Thus the coefficient positions
+
+\[
+1,2,3,4,\ldots
+\]
+
+are sent to
+
+\[
+2,4,6,8,\ldots.
+\]
+
+For \(m=3\), they are sent to
+
+\[
+3,6,9,12,\ldots.
+\]
+
+More generally,
+
+\[
+\boxed{
+n\longmapsto mn.
+}
+\]
+
+% =================================================
+\section{Dirichlet Convolution Appears}
+% =================================================
+
+A stronger connection appears when we combine several composition
+operators.
+
+Let
+
+\[
+A
+=
+\sum_{m\geq1}d_mT_m,
+\]
+
+where \(d_m\) is another sequence.
+
+Apply \(A\) to
+
+\[
+F(x)
+=
+\sum_{n\geq1}c_n\phi_n(x).
+\]
+
+Then
+
+\[
+AF
+=
+\sum_{m\geq1}
+d_mT_m
+\left(
+\sum_{n\geq1}c_n\phi_n
+\right).
+\]
+
+Formally,
+
+\[
+AF
+=
+\sum_{m,n\geq1}
+d_mc_n\phi_{mn}.
+\]
+
+Now collect all terms whose index is equal to \(k\).
+
+The equation
+
+\[
+mn=k
+\]
+
+is equivalent to
+
+\[
+m\mid k,
+\qquad
+n=\frac{k}{m}.
+\]
+
+Therefore the coefficient of \(\phi_k\) becomes
+
+\[
+\sum_{m\mid k}
+d_m c_{k/m}.
+\]
+
+Thus
+
+\[
+\boxed{
+AF
+=
+\sum_{k\geq1}
+\left(
+\sum_{m\mid k}
+d_m c_{k/m}
+\right)
+\phi_k.
+}
+\]
+
+But the expression
+
+\[
+(d*c)(k)
+=
+\sum_{m\mid k}
+d_m c_{k/m}
+\]
+
+is precisely the \emph{Dirichlet convolution} of the sequences
+\(d\) and \(c\).
+
+Therefore
+
+\[
+\boxed{
+\left(
+\sum_{m\geq1}d_mT_m
+\right)
+F
+\quad\longleftrightarrow\quad
+d*c.
+}
+\]
+
+This gives a direct connection between composition of functions and
+one of the central operations of multiplicative number theory.
+
+% =================================================
+\section{The Divisor-Sum Operator}
+% =================================================
+
+Consider the special case
+
+\[
+d_m=1
+\]
+
+for every \(m\).
+
+Define formally
+
+\[
+D
+=
+\sum_{m\geq1}T_m.
+\]
+
+Then the coefficient of \(\phi_k\) in \(DF\) is
+
+\[
+\sum_{m\mid k}c_{k/m}.
+\]
+
+Renaming the divisor,
+
+\[
+\boxed{
+\sum_{d\mid k}c_d.
+}
+\]
+
+Thus the operator \(D\) transforms the coefficient sequence
+
+\[
+c_k
+\]
+
+into its divisor-sum sequence
+
+\[
+\boxed{
+g_k=\sum_{d\mid k}c_d.
+}
+\]
+
+This is exactly the type of transformation for which Möbius inversion
+is designed.
+
+% =================================================
+\section{Möbius Inversion}
+% =================================================
+
+Suppose
+
+\[
+g_n
+=
+\sum_{d\mid n}c_d.
+\]
+
+Then Möbius inversion gives
+
+\[
+\boxed{
+c_n
+=
+\sum_{d\mid n}
+\mu(d)
+g_{n/d},
+}
+\]
+
+where \(\mu\) is the Möbius function.
+
+Therefore a classical number-theoretic inversion formula appears
+naturally from the composition operators of our function family.
+
+Symbolically,
+
+\[
+\mathbf{1}*c=g,
+\]
+
+and
+
+\[
+\mu*g=c,
+\]
+
+because
+
+\[
+\mu*\mathbf{1}=\varepsilon.
+\]
+
+Here \(\varepsilon\) is the identity for Dirichlet convolution.
+
+This suggests a possible bridge between monomial exponential series
+and arithmetic functions.
+
+% =================================================
+\section{Changing the Exponential Base}
+% =================================================
+
+The choice of base \(b\) can be simplified.
+
+Since
+
+\[
+b=e^\lambda,
+\]
+
+we have
+
+\[
+b^{x^n}
+=
+e^{\lambda x^n}.
+\]
+
+Therefore it is enough to study
+
+\[
+\boxed{
+\phi_n(x)=e^{\lambda x^n}.
+}
+\]
+
+The parameter
+
+\[
+\lambda=\ln b
+\]
+
+contains all information about the base.
+
+There are three fundamentally different cases:
+
+\[
+\lambda>0
+\quad\Longleftrightarrow\quad
+b>1,
+\]
+
+\[
+\lambda<0
+\quad\Longleftrightarrow\quad
+0<b<1,
+\]
+
+and
+
+\[
+\lambda=0
+\quad\Longleftrightarrow\quad
+b=1.
+\]
+
+The case \(b=1\) is trivial because
+
+\[
+1^{x^n}=1
+\]
+
+for every \(n\).
+
+We shall therefore exclude it.
+
+% =================================================
+\section{Taylor Expansion of a Block}
+% =================================================
+
+The representation
+
+\[
+\phi_n(x)=e^{\lambda x^n}
+\]
+
+reveals another important structure.
+
+Recall that
+
+\[
+e^y
+=
+\sum_{k=0}^{\infty}\frac{y^k}{k!}.
+\]
+
+Substituting
+
+\[
+y=\lambda x^n,
+\]
+
+we obtain
+
+\[
+e^{\lambda x^n}
+=
+\sum_{k=0}^{\infty}
+\frac{\lambda^k x^{nk}}{k!}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n(x)
+=
+1
++
+\lambda x^n
++
+\frac{\lambda^2}{2!}x^{2n}
++
+\frac{\lambda^3}{3!}x^{3n}
++\cdots.
+}
+\]
+
+Notice something important:
+
+\[
+\phi_n
+\]
+
+contains only powers whose exponents are multiples of \(n\):
+
+\[
+n,2n,3n,4n,\ldots.
+\]
+
+Thus divisibility appears once again.
+
+% =================================================
+\section{Taylor Coefficients and Divisors}
+% =================================================
+
+Consider formally
+
+\[
+F(x)
+=
+\sum_{n\geq1}c_ne^{\lambda x^n}.
+\]
+
+Using the Taylor expansion,
+
+\[
+F(x)
+=
+\sum_{n\geq1}
+c_n
+\sum_{k\geq0}
+\frac{\lambda^k}{k!}x^{nk}.
+\]
+
+Suppose we want the coefficient of \(x^m\).
+
+A contribution appears exactly when
+
+\[
+nk=m.
+\]
+
+Therefore
+
+\[
+n\mid m.
+\]
+
+For \(m\geq1\), the coefficient of \(x^m\) is consequently
+
+\[
+\boxed{
+[x^m]F(x)
+=
+\sum_{n\mid m}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+}
+\]
+
+This is another divisor sum.
+
+Thus divisibility enters the theory in two completely different ways:
+
+\[
+\text{composition}
+\quad\text{and}\quad
+\text{Taylor expansion}.
+\]
+
+This repetition suggests that the divisor structure is not merely
+accidental.
+
+% =================================================
+\section{Centered Blocks}
+% =================================================
+
+There is one inconvenience with the blocks
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+At \(x=0\),
+
+\[
+\phi_n(0)=1
+\]
+
+for every \(n\).
+
+It is therefore useful to define the centered blocks
+
+\[
+\boxed{
+\psi_n(x)
+=
+e^{\lambda x^n}-1.
+}
+\]
+
+Now
+
+\[
+\psi_n(0)=0.
+\]
+
+Their Taylor expansion is
+
+\[
+\psi_n(x)
+=
+\lambda x^n
++
+\frac{\lambda^2}{2!}x^{2n}
++
+\frac{\lambda^3}{3!}x^{3n}
++\cdots.
+\]
+
+The lowest-degree term is exactly
+
+\[
+\boxed{
+\lambda x^n.
+}
+\]
+
+This gives the family a triangular relationship with the ordinary
+monomials.
+
+% =================================================
+\section{A New Expansion in Centered Blocks}
+% =================================================
+
+Consider an ordinary formal power series
+
+\[
+f(x)
+=
+f(0)
++
+t_1x
++
+t_2x^2
++
+t_3x^3
++\cdots.
+\]
+
+We can ask whether it is possible to write
+
+\[
+\boxed{
+f(x)
+=
+f(0)
++
+\sum_{n\geq1}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right).
+}
+\]
+
+Expanding the right-hand side gives
+
+\[
+\sum_{n\geq1}
+c_n
+\sum_{k\geq1}
+\frac{\lambda^k}{k!}x^{nk}.
+\]
+
+Therefore the coefficient \(t_m\) must satisfy
+
+\[
+\boxed{
+t_m
+=
+\sum_{n\mid m}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+}
+\]
+
+Among the divisors of \(m\) is \(n=m\).
+
+The corresponding contribution is
+
+\[
+c_m\lambda.
+\]
+
+Hence
+
+\[
+t_m
+=
+\lambda c_m
++
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+\]
+
+Solving for \(c_m\),
+
+\[
+\boxed{
+c_m
+=
+\frac{1}{\lambda}
+\left[
+t_m
+-
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}
+\right].
+}
+\]
+
+This gives a recursive procedure for constructing the coefficients
+\(c_m\).
+
+% =================================================
+\section{Formal Representation Theorem}
+% =================================================
+
+The previous recursion gives an interesting result.
+
+\begin{theorem}
+
+Let
+
+\[
+\lambda\neq0.
+\]
+
+Every formal power series
+
+\[
+f(x)
+=
+f(0)+\sum_{m\geq1}t_mx^m
+\]
+
+has a unique formal representation of the form
+
+\[
+\boxed{
+f(x)
+=
+f(0)
++
+\sum_{n\geq1}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right).
+}
+\]
+
+\end{theorem}
+
+\begin{proof}
+
+For \(m=1\),
+
+\[
+t_1=\lambda c_1,
+\]
+
+so
+
+\[
+c_1=\frac{t_1}{\lambda}.
+\]
+
+Suppose
+
+\[
+c_1,\ldots,c_{m-1}
+\]
+
+have already been determined.
+
+Then
+
+\[
+t_m
+=
+\lambda c_m
++
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+\]
+
+Every term in the sum is already known.
+
+Since
+
+\[
+\lambda\neq0,
+\]
+
+we can solve uniquely for \(c_m\).
+
+Proceeding recursively determines every coefficient \(c_m\).
+
+\end{proof}
+
+\begin{remark}
+
+This theorem concerns formal power series.
+
+It does not automatically imply that the corresponding infinite
+series converges as a function for a particular value of \(x\).
+
+Understanding when the formal representation becomes an analytic
+representation is a separate and important problem.
+
+\end{remark}
+
+% =================================================
+\section{Prime Indices in the Taylor Transform}
+% =================================================
+
+The divisor formula becomes especially simple for prime indices.
+
+Suppose \(p\) is prime.
+
+Its only positive divisors are
+
+\[
+1
+\qquad\text{and}\qquad
+p.
+\]
+
+Therefore
+
+\[
+t_p
+=
+c_1\frac{\lambda^p}{p!}
++
+c_p\lambda.
+\]
+
+Hence
+
+\[
+\boxed{
+c_p
+=
+\frac{1}{\lambda}
+\left(
+t_p
+-
+c_1\frac{\lambda^p}{p!}
+\right).
+}
+\]
+
+For a composite number, more terms appear.
+
+For example, the divisors of \(6\) are
+
+\[
+1,2,3,6.
+\]
+
+Therefore
+
+\[
+t_6
+=
+c_1\frac{\lambda^6}{6!}
++
+c_2\frac{\lambda^3}{3!}
++
+c_3\frac{\lambda^2}{2!}
++
+c_6\lambda.
+\]
+
+Thus the arithmetic complexity of the index controls the number of
+interactions between coefficients.
+
+% =================================================
+\section{Linear Independence}
+% =================================================
+
+The centered blocks are also linearly independent.
+
+\begin{proposition}
+
+For \(\lambda\neq0\), the functions
+
+\[
+\psi_n(x)
+=
+e^{\lambda x^n}-1,
+\qquad n\geq1,
+\]
+
+are linearly independent with respect to finite linear combinations.
+
+\end{proposition}
+
+\begin{proof}
+
+Suppose
+
+\[
+c_1\psi_1(x)
++
+c_2\psi_2(x)
++\cdots+
+c_N\psi_N(x)
+=
+0.
+\]
+
+Assume not all coefficients are zero.
+
+Let \(m\) be the smallest index for which
+
+\[
+c_m\neq0.
+\]
+
+The lowest power of \(x\) contributed by \(\psi_m\) is
+
+\[
+\lambda x^m.
+\]
+
+Blocks with index greater than \(m\) cannot contribute to \(x^m\).
+
+Blocks with index smaller than \(m\) have coefficient zero by the
+minimality of \(m\).
+
+Therefore the coefficient of \(x^m\) in the entire expression is
+
+\[
+\lambda c_m.
+\]
+
+Since
+
+\[
+\lambda\neq0
+\qquad\text{and}\qquad
+c_m\neq0,
+\]
+
+this coefficient cannot vanish.
+
+This is a contradiction.
+
+Hence every \(c_n\) must be zero.
+
+\end{proof}
+
+% =================================================
+\section{Differentiation}
+% =================================================
+
+Let
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+Differentiating gives
+
+\[
+\phi_n'(x)
+=
+n\lambda x^{n-1}e^{\lambda x^n}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n'(x)
+=
+n\lambda x^{n-1}\phi_n(x).
+}
+\]
+
+The original family
+
+\[
+\{
+\phi_n
+\}
+\]
+
+is therefore not closed under differentiation because a polynomial
+factor appears.
+
+However, this suggests enlarging the family.
+
+Consider functions of the form
+
+\[
+x^k\phi_n(x).
+\]
+
+Differentiate:
+
+\[
+\frac{d}{dx}
+\left(
+x^k\phi_n(x)
+\right)
+=
+kx^{k-1}\phi_n(x)
++
+x^k\phi_n'(x).
+\]
+
+Therefore
+
+\[
+\boxed{
+\frac{d}{dx}
+\left(
+x^k\phi_n(x)
+\right)
+=
+kx^{k-1}\phi_n(x)
++
+n\lambda x^{k+n-1}\phi_n(x).
+}
+\]
+
+Both terms remain in the enlarged family
+
+\[
+\boxed{
+\mathcal{D}
+=
+\{
+x^k e^{\lambda x^n}
+:
+k\geq0,\ n\geq1
+\}.
+}
+\]
+
+Thus this larger family \emph{is} closed under differentiation.
+
+% =================================================
+\section{Connection with Differential Equations}
+% =================================================
+
+Each block satisfies a first-order differential equation.
+
+From
+
+\[
+\phi_n'(x)
+=
+n\lambda x^{n-1}\phi_n(x),
+\]
+
+we obtain
+
+\[
+\boxed{
+\phi_n'(x)
+-
+n\lambda x^{n-1}\phi_n(x)
+=
+0.
+}
+\]
+
+Define the differential operator
+
+\[
+L_n
+=
+\frac{d}{dx}
+-
+n\lambda x^{n-1}.
+\]
+
+Then
+
+\[
+\boxed{
+L_n\phi_n=0.
+}
+\]
+
+Thus every basic block is the solution of a simple first-order linear
+differential equation.
+
+This gives another possible direction:
+
+\begin{question}
+
+Can properties of a monomial exponential series be described using
+the collection of differential operators
+
+\[
+L_1,L_2,L_3,\ldots?
+\]
+
+\end{question}
+
+% =================================================
+\section{Multiplication of Blocks}
+% =================================================
+
+Let us also investigate multiplication.
+
+Take
+
+\[
+\phi_m(x)=e^{\lambda x^m}
+\]
+
+and
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+Then
+
+\[
+\phi_m(x)\phi_n(x)
+=
+e^{\lambda x^m}
+e^{\lambda x^n}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_m(x)\phi_n(x)
+=
+e^{\lambda(x^m+x^n)}.
+}
+\]
+
+In general this is not another basic block.
+
+Thus
+
+\[
+\{\phi_n\}
+\]
+
+is not closed under multiplication.
+
+However, multiplication naturally leads to the larger family
+
+\[
+\boxed{
+e^{\lambda P(x)},
+}
+\]
+
+where \(P(x)\) is a polynomial.
+
+For example,
+
+\[
+\phi_2(x)\phi_5(x)
+=
+e^{\lambda(x^2+x^5)}.
+\]
+
+This suggests that the monomial exponential blocks sit naturally
+inside a larger theory of exponentials of polynomials.
+
+% =================================================
+\section{Convergence}
+% =================================================
+
+We now investigate
+
+\[
+F(x)
+=
+\sum_{n=1}^{\infty}
+c_n b^{x^n}.
+\]
+
+The behaviour depends strongly on both \(x\) and \(b\).
+
+% -------------------------------------------------
+\subsection{The Region \texorpdfstring{$|x|<1$}{|x|<1}}
+% -------------------------------------------------
+
+If
+
+\[
+|x|<1,
+\]
+
+then
+
+\[
+x^n\longrightarrow0.
+\]
+
+Consequently,
+
+\[
+b^{x^n}\longrightarrow1.
+\]
+
+Thus
+
+\[
+c_nb^{x^n}
+\sim c_n.
+\]
+
+In particular, if
+
+\[
+c_n=1,
+\]
+
+then
+
+\[
+b^{x^n}\longrightarrow1,
+\]
+
+so the terms do not approach zero and
+
+\[
+\sum_{n=1}^{\infty}b^{x^n}
+\]
+
+diverges.
+
+More generally, in the region \(|x|<1\), convergence is controlled
+primarily by the coefficient sequence \(c_n\).
+
+% -------------------------------------------------
+\subsection{The Point \texorpdfstring{$x=1$}{x=1}}
+% -------------------------------------------------
+
+At
+
+\[
+x=1,
+\]
+
+we have
+
+\[
+x^n=1.
+\]
+
+Therefore
+
+\[
+F(1)
+=
+\sum_{n=1}^{\infty}c_nb.
+\]
+
+Hence
+
+\[
+\boxed{
+F(1)=b\sum_{n=1}^{\infty}c_n.
+}
+\]
+
+Thus convergence at \(x=1\) is exactly the same as convergence of
+
+\[
+\sum c_n.
+\]
+
+% -------------------------------------------------
+\subsection{The Point \texorpdfstring{$x=0$}{x=0}}
+% -------------------------------------------------
+
+At
+
+\[
+x=0,
+\]
+
+we have
+
+\[
+0^n=0.
+\]
+
+Thus
+
+\[
+b^{0^n}=1
+\]
+
+and
+
+\[
+\boxed{
+F(0)
+=
+\sum_{n=1}^{\infty}c_n.
+}
+\]
+
+Again, convergence is determined directly by the coefficients.
+
+% -------------------------------------------------
+\subsection{The Region \texorpdfstring{$x>1$}{x>1} with \texorpdfstring{$b>1$}{b>1}}
+% -------------------------------------------------
+
+Suppose
+
+\[
+x>1
+\]
+
+and
+
+\[
+b>1.
+\]
+
+Then
+
+\[
+x^n\longrightarrow+\infty.
+\]
+
+Therefore
+
+\[
+b^{x^n}\longrightarrow+\infty.
+\]
+
+If \(c_n=1\), the terms themselves grow without bound.
+
+For convergence we require at least
+
+\[
+\boxed{
+c_nb^{x^n}\longrightarrow0.
+}
+\]
+
+Thus the coefficients must decay extremely rapidly.
+
+% -------------------------------------------------
+\subsection{The Region \texorpdfstring{$x>1$}{x>1} with \texorpdfstring{$0<b<1$}{0<b<1}}
+% -------------------------------------------------
+
+Now suppose
+
+\[
+0<b<1.
+\]
+
+Then
+
+\[
+b^{x^n}\longrightarrow0
+\]
+
+extremely rapidly.
+
+Consider the ratio
+
+\[
+\frac{b^{x^{n+1}}}{b^{x^n}}
+=
+b^{x^{n+1}-x^n}.
+\]
+
+Since
+
+\[
+x^{n+1}-x^n
+=
+x^n(x-1),
+\]
+
+we obtain
+
+\[
+\boxed{
+\frac{b^{x^{n+1}}}{b^{x^n}}
+=
+b^{x^n(x-1)}.
+}
+\]
+
+Because
+
+\[
+x^n(x-1)\to\infty
+\]
+
+and \(0<b<1\),
+
+\[
+b^{x^n(x-1)}
+\longrightarrow0.
+\]
+
+Therefore
+
+\[
+\sum_{n=1}^{\infty}b^{x^n}
+\]
+
+converges for every \(x>1\).
+
+The decay is faster than ordinary geometric decay.
+
+% -------------------------------------------------
+\subsection{Negative Values with \texorpdfstring{$x<-1$}{x<-1}}
+% -------------------------------------------------
+
+Negative values introduce a new phenomenon.
+
+Let
+
+\[
+x=-r,
+\qquad
+r>1.
+\]
+
+Then
+
+\[
+x^n=(-1)^nr^n.
+\]
+
+Therefore, for even \(n\),
+
+\[
+x^n=r^n,
+\]
+
+while for odd \(n\),
+
+\[
+x^n=-r^n.
+\]
+
+Hence
+
+\[
+b^{x^n}
+=
+\begin{cases}
+b^{r^n}, & n\text{ even},\\[4pt]
+b^{-r^n}, & n\text{ odd}.
+\end{cases}
+\]
+
+If
+
+\[
+b>1,
+\]
+
+the even-indexed blocks explode while the odd-indexed blocks decay.
+
+If
+
+\[
+0<b<1,
+\]
+
+the opposite happens.
+
+Thus one parity tends to zero while the other tends to infinity.
+
+This creates a strong asymmetry that does not occur for \(x>0\).
+
+% =================================================
+\section{A Simple Example}
+% =================================================
+
+Consider
+
+\[
+b=\frac12
+\]
+
+and
+
+\[
+x=2.
+\]
+
+Then
+
+\[
+b^{x^n}
+=
+\left(\frac12\right)^{2^n}.
+\]
+
+The first terms are
+
+\[
+\frac{1}{2^2},
+\qquad
+\frac{1}{2^4},
+\qquad
+\frac{1}{2^8},
+\qquad
+\frac{1}{2^{16}},
+\qquad
+\frac{1}{2^{32}},
+\ldots
+\]
+
+or
+
+\[
+\frac14,
+\qquad
+\frac1{16},
+\qquad
+\frac1{256},
+\qquad
+\frac1{65536},
+\ldots.
+\]
+
+The exponent itself grows exponentially:
+
+\[
+2^n,
+\]
+
+and this exponential quantity appears inside another exponential.
+
+This explains the extremely rapid decay.
+
+% =================================================
+\section{Complex Extension}
+% =================================================
+
+Another possible generalisation is to allow
+
+\[
+\lambda\in\mathbb{C}.
+\]
+
+If
+
+\[
+\lambda=i\theta,
+\]
+
+then
+
+\[
+\phi_n(x)
+=
+e^{i\theta x^n}.
+\]
+
+Since
+
+\[
+|e^{i\theta x^n}|=1,
+\]
+
+the blocks no longer grow or decay.
+
+Instead they oscillate.
+
+Thus the same structure becomes
+
+\[
+\boxed{
+F(x)
+=
+\sum_{n\geq1}
+c_ne^{i\theta x^n}.
+}
+\]
+
+Now the problem is no longer dominated by exponential growth but by
+cancellation and oscillation.
+
+This creates a possible connection with polynomial-phase exponential
+functions and harmonic analysis.
+
+% =================================================
+\section{What is Inherited and What May Be Interesting}
+% =================================================
+
+The identity
+
+\[
+\phi_n(x^m)=\phi_{nm}(x)
+\]
+
+is ultimately inherited from
+
+\[
+(x^m)^n=x^{mn}.
+\]
+
+Therefore this identity by itself should not be considered a new
+phenomenon.
+
+However, several richer structures appear after the blocks are placed
+inside linear combinations.
+
+For example,
+
+\[
+F(x)
+=
+\sum c_n\phi_n(x)
+\]
+
+allows the composition operators \(T_m\) to transform entire
+coefficient sequences.
+
+Combining these operators produces Dirichlet convolution.
+
+Taylor expansion produces divisor sums independently.
+
+The centered family
+
+\[
+e^{\lambda x^n}-1
+\]
+
+also gives a triangular transformation of ordinary power series.
+
+These interactions appear to be more mathematically substantial than
+the original identity alone.
+
+% =================================================
+\section{Research Directions}
+% =================================================
+
+Several natural questions arise from the preceding calculations.
+
+\begin{question}
+
+For which coefficient sequences \(c_n\) does
+
+\[
+\sum_{n=1}^{\infty}c_ne^{\lambda x^n}
+\]
+
+converge on a prescribed interval?
+
+\end{question}
+
+\begin{question}
+
+What is the maximal domain of convergence associated with a given
+sequence \(c_n\)?
+
+\end{question}
+
+\begin{question}
+
+When does the formal representation
+
+\[
+f(x)
+=
+f(0)
++
+\sum_{n\geq1}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right)
+\]
+
+converge to the analytic function \(f(x)\)?
+
+\end{question}
+
+\begin{question}
+
+What properties of \(f\) correspond to simple arithmetic properties
+of the coefficient sequence \(c_n\)?
+
+\end{question}
+
+\begin{question}
+
+What happens when \(c_n\) is itself an arithmetic function such as
+
+\[
+\mu(n),
+\qquad
+\varphi(n),
+\qquad
+d(n),
+\qquad
+\Lambda(n)?
+\]
+
+\end{question}
+
+\begin{question}
+
+Can Dirichlet-series identities be translated into identities between
+operators of the form
+
+\[
+\sum_{m\geq1}d_mT_m?
+\]
+
+\end{question}
+
+\begin{question}
+
+Can multiplication, differentiation and composition be combined into
+a natural algebra generated by the functions
+
+\[
+e^{\lambda x^n}?
+\]
+
+\end{question}
+
+\begin{question}
+
+Are there interesting functional equations involving prime-indexed
+blocks
+
+\[
+\phi_p(x)=e^{\lambda x^p}?
+\]
+
+\end{question}
+
+\begin{question}
+
+Can analytic properties of
+
+\[
+F(x)
+=
+\sum c_ne^{\lambda x^n}
+\]
+
+reveal arithmetic properties of the sequence \(c_n\)?
+
+\end{question}
+
+% =================================================
+\section{Where We Are}
+% =================================================
+
+We began with the apparently simple family
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+Composition revealed
+
+\[
+T_m\phi_n=\phi_{mn}.
+\]
+
+This transformed multiplication of natural numbers into composition
+of functions.
+
+Divisibility became reachability:
+
+\[
+d\mid n
+\quad\Longleftrightarrow\quad
+\phi_d
+\longrightarrow
+\phi_n.
+\]
+
+Prime factorisation became factorisation of composition operators:
+
+\[
+T_n
+=
+\prod_{p^\alpha\parallel n}
+T_p^\alpha.
+\]
+
+Combining composition operators led naturally to Dirichlet
+convolution:
+
+\[
+(d*c)(n)
+=
+\sum_{m\mid n}
+d_m c_{n/m}.
+\]
+
+Taylor expansion independently produced divisor sums:
+
+\[
+[x^m]F(x)
+=
+\sum_{n\mid m}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+\]
+
+Finally, after centering the blocks,
+
+\[
+\psi_n(x)
+=
+e^{\lambda x^n}-1,
+\]
+
+we discovered that they form a triangular deformation of the ordinary
+monomials and formally allow every power series to be expanded
+uniquely in this new family.
+
+Thus the main object is no longer merely the expression
+
+\[
+\sum c_ne^{\lambda x^n}.
+\]
+
+The emerging structure is the interaction between
+
+\[
+\boxed{
+\text{analysis}
++
+\text{composition}
++
+\text{divisibility}
++
+\text{arithmetic functions}.
+}
+\]
+
+The next step should be to determine which of these formal structures
+survive analytically when convergence is imposed.
+
+\end{document}
+
