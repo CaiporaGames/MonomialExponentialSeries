@@ -485,6 +485,33 @@ monoid
 (\N,\cdot).
 \]
 
+
+
+\noindent\textbf{Concrete examples.}
+\begin{itemize}
+  \item If \(F(x)=\phi_2(x)+3\phi_5(x)=b^{x^2}+3b^{x^5}\), then
+  
+
+\[
+  T_3F(x)=F(x^3)=b^{(x^3)^2}+3b^{(x^3)^5}=b^{x^6}+3b^{x^{15}}=\phi_6(x)+3\phi_{15}(x).
+  \]
+
+
+  \item If \(G(x)=\sum_{n\ge1} c_n\phi_n(x)\), then
+  
+
+\[
+  T_mG(x)=\sum_{n\ge1} c_n\phi_n(x^m)=\sum_{n\ge1} c_n\phi_{mn}(x),
+  \]
+
+
+  so the coefficient at index \(n\) is transported to index \(mn\).
+\end{itemize}
+
+\medskip
+
+\noindent These formulas make explicit the correspondence between functional composition with power maps and multiplication of natural-number indices.
+
 % =================================================
 \section{Prime Factorisation as Operator Factorisation}
 % =================================================
@@ -635,6 +662,54 @@ corresponds to
 \[
 3\mid6\mid12.
 \]
+
+\subsection*{Why divisibility as a network of function transformations matters}
+
+Interpreting the divisibility relation \(d\mid n\) as a directed edge
+\(\phi_d\to\phi_n\) in a graph of functions turns an arithmetic relation
+into a geometric and dynamical object. This viewpoint is useful for several reasons.
+
+\paragraph{Visualization and intuition.}
+Representing indices as nodes and divisibility as arrows makes chains and
+reachability immediate. For instance,
+
+
+\[
+\phi_2\longrightarrow\phi_4\longrightarrow\phi_8
+\]
+
+
+visually encodes \(2\mid4\mid8\).
+
+\paragraph{Operator algebra.}
+The substitution operators \(T_m\) defined by \(T_mF(x)=F(x^m)\) satisfy
+\(T_mT_n=T_{mn}\). Thus multiplicative identities among integers become
+algebraic identities among operators, allowing analytic techniques to
+study arithmetic phenomena.
+
+\paragraph{Bridge between analysis and number theory.}
+The same family \(\{\phi_n\}\) links functional analysis (composition,
+differentiation, operator theory) with multiplicative number theory
+(Dirichlet convolution, Möbius inversion). For example, operators of the
+form \(\sum_{m\ge1}d_mT_m\) act on coefficient sequences by Dirichlet
+convolution.
+
+\paragraph{New invariants and classifications.}
+Graph-theoretic notions such as distance, minimal predecessors, and
+connected components yield invariants of indices that are not obvious in
+the purely arithmetic setting; these invariants can detect factorization
+patterns and structural symmetries.
+
+\paragraph{Constructive and inverse methods.}
+Natural operators (e.g. the divisor-sum operator \(D=\sum T_m\)) and
+their inverses (via Möbius inversion) provide operational tools to
+decompose and reconstruct series expressed in the \(\phi_n\) basis.
+
+\paragraph{Potential applications.}
+This perspective suggests new approaches in asymptotic analysis,
+differential equations, combinatorics, and probabilistic models where
+reachability by multiplication plays a role.
+
 
 % =================================================
 \section{A Divisibility Diagram}
@@ -1064,6 +1139,74 @@ d*c.
 This gives a direct connection between composition of functions and
 one of the central operations of multiplicative number theory.
 
+\subsection*{Relation to Dirichlet convolution}
+
+Two distinct structures coexist in the monomial‑exponential framework.
+
+\paragraph{1. Functional layer.}
+The substitution operators
+
+
+\[
+T_m:F(x)\mapsto F(x^m)
+\]
+
+
+act on functions. When these operators act on the basic blocks
+\(\phi_n(x)=e^{\lambda x^n}\) we have
+
+
+\[
+T_m\phi_n=\phi_{mn},
+\]
+
+
+so composition of power maps corresponds to multiplication of indices:
+
+
+\[
+T_mT_n=T_{mn}.
+\]
+
+
+
+\paragraph{2. Arithmetic layer.}
+If
+
+
+\[
+F(x)=\sum_{n\ge1} c_n\phi_n(x),
+\]
+
+
+and one forms a linear combination of composition operators
+
+
+\[
+A=\sum_{m\ge1} d_m T_m,
+\]
+
+
+then the action of \(A\) on \(F\) rearranges coefficients by multiplicative index relations:
+
+
+\[
+AF=\sum_{m,n\ge1} d_m c_n \phi_{mn}
+=\sum_{k\ge1}\Big(\sum_{m\mid k} d_m c_{k/m}\Big)\phi_k.
+\]
+
+
+The inner sum \(\sum_{m\mid k} d_m c_{k/m}\) is precisely the Dirichlet convolution
+\((d*c)(k)\). Thus the operator \(A\) corresponds to the arithmetic operation \(d*c\)
+on the coefficient sequences.
+
+\paragraph{Conclusion.}
+The analytic composition operators encode multiplicative structure of indices,
+while Dirichlet convolution governs how coefficient sequences combine under those operators.
+Consequently, many algebraic and inversion phenomena (e.g. divisor‑sum operators and Möbius inversion)
+appear naturally in this setting.
+
+
 % =================================================
 \section{The Divisor-Sum Operator}
 % =================================================
@@ -1114,6 +1257,98 @@ g_k=\sum_{d\mid k}c_d.
 
 This is exactly the type of transformation for which Möbius inversion
 is designed.
+
+\subsection*{The Divisor‑Sum Operator: practical examples}
+
+Define the divisor‑sum operator
+
+
+\[
+D=\sum_{m\ge1}T_m,\qquad T_mF(x)=F(x^m).
+\]
+
+
+If
+
+
+\[
+F(x)=\sum_{n\ge1}c_n\phi_n(x),
+\]
+
+
+then
+
+
+\[
+DF(x)=\sum_{k\ge1}\Big(\sum_{d\mid k}c_d\Big)\phi_k(x).
+\]
+
+
+Thus the coefficient transform is
+
+
+\[
+g_k=\sum_{d\mid k}c_d,
+\]
+
+
+i.e. \(g=\mathbf{1}*c\) (Dirichlet convolution with the constant function \(1\)).
+
+\paragraph{Numerical example.}
+Let \(c_1=1,\ c_2=2,\ c_3=0,\ c_4=1\). Then
+
+
+\[
+\begin{aligned}
+g_1&=c_1=1,\\
+g_2&=c_1+c_2=3,\\
+g_3&=c_1+c_3=1,\\
+g_4&=c_1+c_2+c_4=4.
+\end{aligned}
+\]
+
+
+Hence
+
+
+\[
+DF(x)=\phi_1+3\phi_2+\phi_3+4\phi_4+\cdots.
+\]
+
+
+Recover \(c\) from \(g\) by Möbius inversion:
+
+
+\[
+c_n=\sum_{d\mid n}\mu(d)\,g_{n/d},
+\]
+
+
+which reproduces \(c_1=1,\ c_2=2,\ c_3=0,\ c_4=1\).
+
+\paragraph{Matrix form (truncated).}
+For indices \(1\le n,k\le4\) the action of \(D\) is \(g=Mc\) with
+
+
+\[
+M_{k,n}=\begin{cases}1,& n\mid k,\\0,&\text{otherwise,}\end{cases}
+\qquad
+M=\begin{pmatrix}
+1 & 0 & 0 & 0\\
+1 & 1 & 0 & 0\\
+1 & 0 & 1 & 0\\
+1 & 1 & 0 & 1
+\end{pmatrix}.
+\]
+
+
+
+\paragraph{Remarks.}
+The divisor‑sum operator is a concrete bridge between the operator
+language \(T_m\) and multiplicative number theory: linear combinations
+of the \(T_m\) correspond to Dirichlet convolutions on coefficient
+sequences, and Möbius inversion provides the natural inverse procedure.
+
 
 % =================================================
 \section{Möbius Inversion}
@@ -2655,6 +2890,1438 @@ The emerging structure is the interaction between
 
 The next step should be to determine which of these formal structures
 survive analytically when convergence is imposed.
+
+```latex
+% =========================================================
+\section{From Learning Mathematics to Mathematical Research}
+% =========================================================
+
+Up to this point, several mathematical structures have emerged naturally
+from the family of functions
+
+\[
+    \psi_n(x)=e^{\lambda x^n}-1.
+\]
+
+We have encountered connections with power series, divisibility, prime
+numbers, Dirichlet convolution, composition operators, function
+approximation, and possible relations with important objects from number
+theory.
+
+This abundance of connections is both exciting and dangerous.
+
+It is exciting because it suggests that the construction may belong to a
+larger mathematical structure.
+
+But it is also dangerous because it is very easy to begin studying many
+advanced theories at the same time without understanding any of them deeply.
+
+This leads to an important methodological question:
+
+\begin{quote}
+How can we turn an interesting mathematical idea into a rigorous
+investigation without first knowing all the mathematics related to it?
+\end{quote}
+
+The approach adopted in this work will be not to study every possible
+theory in advance.
+
+Instead, we shall follow the path
+
+\[
+\boxed{
+\text{problem}
+\longrightarrow
+\text{obstacle}
+\longrightarrow
+\text{new tool}
+\longrightarrow
+\text{return to the problem}.
+}
+\]
+
+In this way, the investigation itself will determine which mathematical
+tools we need to learn.
+
+% =========================================================
+\subsection{From textbook mathematics to research mathematics}
+% =========================================================
+
+A large part of mathematics education follows approximately the pattern
+
+\[
+\text{definition}
+\longrightarrow
+\text{theorem}
+\longrightarrow
+\text{example}
+\longrightarrow
+\text{exercise}.
+\]
+
+The student first learns a tool and is later given problems in which that
+tool is expected to be used.
+
+Mathematical research often develops in almost the opposite direction.
+
+We begin with an object or a problem that we do not yet understand:
+
+\[
+\text{an unfamiliar example}.
+\]
+
+After experimenting with it, we may notice a pattern:
+
+\[
+\text{example}
+\longrightarrow
+\text{pattern}.
+\]
+
+We then try to transform the pattern into a mathematical statement:
+
+\[
+\text{pattern}
+\longrightarrow
+\text{conjecture}.
+\]
+
+We search for examples that support it and, just as importantly, for
+examples that destroy it:
+
+\[
+\text{conjecture}
+\longrightarrow
+\text{proofs and counterexamples}.
+\]
+
+Only after this process may the correct definition become clear, followed
+by lemmas and theorems.
+
+Thus a typical research path can look like
+
+\[
+\boxed{
+\text{example}
+\to
+\text{pattern}
+\to
+\text{conjecture}
+\to
+\text{counterexample}
+\to
+\text{definition}
+\to
+\text{lemma}
+\to
+\text{theorem}.
+}
+\]
+
+This is approximately how the present construction emerged.
+
+We began by looking at functions such as
+
+\[
+e^{x^2},
+\qquad
+e^{x^3},
+\qquad
+e^{x^4},
+\qquad
+\ldots
+\]
+
+and asking what would happen if these functions were used as building
+blocks for other functions.
+
+While studying these blocks, we found the relation
+
+\[
+\phi_n(x^m)=\phi_{nm}(x),
+\]
+
+which revealed a connection with multiplication of indices.
+
+From this, several arithmetic structures appeared naturally:
+
+\[
+\text{divisibility},
+\qquad
+\text{prime indices},
+\qquad
+\text{composition operators},
+\qquad
+\text{Dirichlet convolution}.
+\]
+
+Later, by centering the blocks,
+
+\[
+\psi_n(x)=e^{\lambda x^n}-1,
+\]
+
+we obtained
+
+\[
+\psi_n(x)
+=
+\lambda x^n
++
+\frac{\lambda^2}{2!}x^{2n}
++
+\frac{\lambda^3}{3!}x^{3n}
++\cdots,
+\]
+
+which created a direct connection with ordinary power series.
+
+Thus the mathematical tools were not selected beforehand.
+
+They appeared as consequences of the questions asked about the object.
+
+% =========================================================
+\subsection{The central question}
+% =========================================================
+
+To avoid spreading the investigation too quickly into many unrelated
+directions, we shall begin with a single central question:
+
+\[
+\boxed{
+\text{Which functions can be represented in the form }
+f(x)
+=
+f(0)
++
+\sum_{n=1}^{\infty}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right)?
+}
+\]
+
+This single question contains many smaller problems.
+
+For example:
+
+\begin{itemize}
+
+    \item Do the coefficients \(c_n\) exist?
+
+    \item If they exist, are they unique?
+
+    \item How can they be computed?
+
+    \item Is the equality merely formal, or does the infinite series
+    actually converge?
+
+    \item For which values of \(x\) does convergence occur?
+
+    \item What natural function space is generated by these blocks?
+
+\end{itemize}
+
+Instead of attempting to answer all of these questions immediately, we
+begin with the simplest possible example.
+
+% =========================================================
+\subsection{First problem: representing the function \texorpdfstring{$x$}{x}}
+% =========================================================
+
+Let us take
+
+\[
+\lambda=1
+\]
+
+and attempt to write
+
+\[
+\boxed{
+x
+=
+\sum_{n=1}^{\infty}
+c_n
+\left(
+e^{x^n}-1
+\right).
+}
+\]
+
+The first blocks are
+
+\[
+e^x-1
+=
+x+\frac{x^2}{2!}+\frac{x^3}{3!}
++\frac{x^4}{4!}+\cdots,
+\]
+
+\[
+e^{x^2}-1
+=
+x^2+\frac{x^4}{2!}+\frac{x^6}{3!}+\cdots,
+\]
+
+\[
+e^{x^3}-1
+=
+x^3+\frac{x^6}{2!}+\frac{x^9}{3!}+\cdots.
+\]
+
+Therefore
+
+\[
+\begin{aligned}
+x
+={}&
+c_1
+\left(
+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots
+\right)
+\\
+&+
+c_2
+\left(
+x^2+\frac{x^4}{2!}+\cdots
+\right)
+\\
+&+
+c_3
+\left(
+x^3+\frac{x^6}{2!}+\cdots
+\right)
++\cdots.
+\end{aligned}
+\]
+
+We can now compare coefficients.
+
+For the coefficient of \(x\), only the first block contributes.
+
+Hence
+
+\[
+1=c_1,
+\]
+
+so
+
+\[
+\boxed{c_1=1.}
+\]
+
+For the coefficient of \(x^2\), we receive contributions from
+
+\[
+e^x-1
+\]
+
+and
+
+\[
+e^{x^2}-1.
+\]
+
+Therefore
+
+\[
+0=\frac{c_1}{2!}+c_2.
+\]
+
+Since \(c_1=1\),
+
+\[
+\boxed{
+c_2=-\frac12.
+}
+\]
+
+For \(x^3\),
+
+\[
+0=\frac{c_1}{3!}+c_3,
+\]
+
+so
+
+\[
+\boxed{
+c_3=-\frac16.
+}
+\]
+
+The process continues.
+
+At this stage, the objective is not to memorize a general formula.
+
+The objective is to observe which blocks contribute to each power of
+\(x\).
+
+% =========================================================
+\subsection{Why divisors appear}
+% =========================================================
+
+Consider again
+
+\[
+e^{x^n}-1.
+\]
+
+Its expansion is
+
+\[
+e^{x^n}-1
+=
+\sum_{k=1}^{\infty}\frac{x^{nk}}{k!}.
+\]
+
+Thus the block indexed by \(n\) contains only the powers
+
+\[
+x^n,
+\quad
+x^{2n},
+\quad
+x^{3n},
+\quad
+x^{4n},
+\quad
+\ldots
+\]
+
+Suppose we want to calculate the coefficient of
+
+\[
+x^m.
+\]
+
+The block indexed by \(n\) contributes to \(x^m\) exactly when there exists
+\(k\in\mathbb{N}\) such that
+
+\[
+nk=m.
+\]
+
+But this is equivalent to
+
+\[
+n\mid m.
+\]
+
+Therefore
+
+\[
+\boxed{
+\text{the block }\psi_n
+\text{ contributes to the coefficient of }x^m
+\Longleftrightarrow
+n\mid m.
+}
+\]
+
+Divisibility is therefore not artificially imposed on the theory.
+
+It emerges directly from the internal structure of the exponential blocks.
+
+% =========================================================
+\subsection{The general coefficient relation}
+% =========================================================
+
+Consider now
+
+\[
+f(x)
+=
+f(0)
++
+\sum_{m=1}^{\infty}
+t_mx^m
+\]
+
+and suppose that we seek a representation
+
+\[
+f(x)
+=
+f(0)
++
+\sum_{n=1}^{\infty}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right).
+\]
+
+Since
+
+\[
+e^{\lambda x^n}-1
+=
+\sum_{k=1}^{\infty}
+\frac{\lambda^k}{k!}x^{nk},
+\]
+
+the coefficient of \(x^m\) receives contributions from exactly those
+indices \(n\) satisfying
+
+\[
+n\mid m.
+\]
+
+Therefore
+
+\[
+\boxed{
+t_m
+=
+\sum_{n\mid m}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+}
+\]
+
+Among the divisors of \(m\) is \(m\) itself.
+
+When \(n=m\),
+
+\[
+\frac{\lambda^{m/m}}{(m/m)!}
+=
+\lambda.
+\]
+
+Hence
+
+\[
+t_m
+=
+\lambda c_m
++
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+\]
+
+Solving for \(c_m\),
+
+\[
+\boxed{
+c_m
+=
+\frac{1}{\lambda}
+\left[
+t_m
+-
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}
+\right].
+}
+\]
+
+This gives a recursive method for calculating the coefficients.
+
+% =========================================================
+\subsection{First direction of study: formal power series}
+% =========================================================
+
+At this point, an important distinction appears.
+
+We may treat
+
+\[
+f(x)=\sum_{n=0}^{\infty}a_nx^n
+\]
+
+simply as an infinite algebraic object, without asking whether it converges
+for a specific numerical value of \(x\).
+
+This leads to the concept of a \emph{formal power series}.
+
+In the formal setting, the main object is the coefficient sequence.
+
+Thus
+
+\[
+\sum_{n=0}^{\infty}a_nx^n
+\]
+
+is studied algebraically.
+
+Questions such as
+
+\[
+x=2
+\]
+
+or
+
+\[
+x=100
+\]
+
+do not yet matter.
+
+Our first objective will therefore be to understand completely the
+transformation
+
+\[
+(t_1,t_2,t_3,\ldots)
+\longleftrightarrow
+(c_1,c_2,c_3,\ldots).
+\]
+
+Only later will we investigate whether these formal expressions define
+actual functions.
+
+% =========================================================
+\subsection{Formal equality versus analytic equality}
+% =========================================================
+
+Suppose we obtain formally
+
+\[
+x
+=
+\sum_{n=1}^{\infty}
+c_n(e^{x^n}-1).
+\]
+
+This does not automatically imply that, for example,
+
+\[
+\frac12
+=
+\sum_{n=1}^{\infty}
+c_n
+\left(
+e^{(1/2)^n}-1
+\right).
+\]
+
+The formal equality tells us only that the coefficients of every power of
+\(x\) agree.
+
+To interpret the expression as an equality between functions, we must study
+the convergence of the infinite series.
+
+This is where analysis becomes necessary.
+
+% =========================================================
+\subsection{Second direction of study: convergence}
+% =========================================================
+
+After understanding the formal representation, we can ask
+
+\[
+\boxed{
+\sum_{n=1}^{\infty}
+c_n(e^{\lambda x^n}-1)
+\quad
+\text{converges for which values of }x?
+}
+\]
+
+This naturally leads to concepts such as
+
+\begin{itemize}
+
+    \item convergence of numerical series;
+
+    \item absolute convergence;
+
+    \item uniform convergence;
+
+    \item interchange of limits and infinite sums;
+
+    \item term-by-term differentiation;
+
+    \item term-by-term integration.
+
+\end{itemize}
+
+These topics will not be studied simply because they belong to an analysis
+course.
+
+They will appear because the investigation requires them.
+
+For example, if we want to justify
+
+\[
+\frac{d}{dx}
+\sum_{n=1}^{\infty}c_n\psi_n(x)
+=
+\sum_{n=1}^{\infty}
+c_n\psi_n'(x),
+\]
+
+we must determine under what conditions such an interchange is valid.
+
+This naturally leads to uniform convergence and related ideas.
+
+% =========================================================
+\subsection{Third direction: what is the natural space?}
+% =========================================================
+
+Up to now we have used expressions such as
+
+\begin{quote}
+``the space of monomial exponential series''
+\end{quote}
+
+informally.
+
+But a rigorous theory must ask:
+
+\begin{quote}
+A space of what objects?
+\end{quote}
+
+One possibility is to work only with formal series:
+
+\[
+\mathcal{M}_{\lambda}^{\mathrm{formal}}
+=
+\left\{
+\sum_{n=1}^{\infty}
+c_n(e^{\lambda x^n}-1)
+\right\}.
+\]
+
+Another possibility is to consider functions analytic in a neighborhood of
+the origin:
+
+\[
+\mathcal{M}_{\lambda}^{\mathrm{an}}.
+\]
+
+We could also study functions on a real interval,
+
+\[
+[-r,r],
+\]
+
+or entire functions on the complex plane.
+
+These choices may produce substantially different theories.
+
+Therefore a future central question is
+
+\[
+\boxed{
+\text{What is the natural function space for the blocks }
+\psi_n(x)=e^{\lambda x^n}-1?
+}
+\]
+
+When we try to answer this question, concepts such as
+
+\[
+\text{norm},
+\qquad
+\text{distance},
+\qquad
+\text{completeness},
+\qquad
+\text{basis}
+\]
+
+may become necessary.
+
+At that point, functional analysis will arise naturally from the problem.
+
+% =========================================================
+\subsection{Why we should not begin with operator theory}
+% =========================================================
+
+Earlier we introduced the operators
+
+\[
+T_mf(x)=f(x^m).
+\]
+
+They satisfy
+
+\[
+T_mT_n=T_{mn}.
+\]
+
+This relation is interesting because it transfers multiplication of natural
+numbers into composition of operators.
+
+It may be tempting to immediately study properties such as the spectrum of
+
+\[
+T_m.
+\]
+
+However, there is a fundamental problem.
+
+An operator must act on a specified space.
+
+For example, \(T_m\) may act on
+
+\[
+\text{formal power series},
+\]
+
+\[
+\text{continuous functions},
+\]
+
+\[
+\text{analytic functions},
+\]
+
+or
+
+\[
+\text{entire functions}.
+\]
+
+Its properties may depend strongly on the chosen space.
+
+Therefore the question
+
+\[
+\text{``What is the spectrum of }T_m\text{?''}
+\]
+
+is premature before the natural function space has been identified.
+
+For now, operator theory will remain a future branch of the investigation.
+
+% =========================================================
+\subsection{Why we should not begin with the Riemann Hypothesis}
+% =========================================================
+
+The present construction can be connected with important objects in number
+theory.
+
+For example, we may encode coefficients related to
+
+\[
+\zeta(s),
+\]
+
+or rewrite the Riemann
+
+\[
+\xi(s)
+\]
+
+function using monomial exponential coordinates.
+
+These connections are mathematically interesting.
+
+However, there is a fundamental difference between reformulating a problem
+and simplifying it.
+
+Writing a difficult function in another form does not automatically make its
+deep properties easier to prove.
+
+Thus, at this stage, we should not ask
+
+\[
+\text{``Can these blocks prove the Riemann Hypothesis?''}
+\]
+
+but instead
+
+\[
+\boxed{
+\text{Does the new representation make any difficult property more
+accessible?}
+}
+\]
+
+Until the basic structure of the monomial exponential blocks is properly
+understood, attempts to solve extremely deep open problems would be
+premature.
+
+Possible applications to the Riemann zeta function, perfect numbers, prime
+numbers, and other arithmetic questions will therefore remain future
+motivations rather than immediate objectives.
+
+% =========================================================
+\subsection{A research program guided by problems}
+% =========================================================
+
+The theory will be developed in the following order.
+
+\subsubsection*{Stage 1 --- Formal representation}
+
+Compute explicitly the coefficients \(c_n\) for simple functions such as
+
+\[
+x,
+\qquad
+x^2,
+\qquad
+x^3,
+\qquad
+e^x,
+\qquad
+\sin x,
+\qquad
+\cos x,
+\qquad
+\frac{1}{1-x}.
+\]
+
+At this stage, the main goal is to understand how the coefficient structure
+changes from one function to another.
+
+We also want to identify patterns involving divisibility.
+
+\subsubsection*{Stage 2 --- Arithmetic structure}
+
+After divisor sums appear naturally, we shall study the number-theoretic
+tools that describe them:
+
+\[
+\text{arithmetic functions},
+\]
+
+\[
+\text{Dirichlet convolution},
+\]
+
+\[
+\text{Möbius inversion}.
+\]
+
+The objective is not merely to learn these theories.
+
+We want to understand exactly how they describe the transformation between
+ordinary Taylor coefficients and monomial exponential coefficients.
+
+\subsubsection*{Stage 3 --- Convergence}
+
+We then choose one concrete expansion.
+
+A natural first candidate is
+
+\[
+x
+=
+\sum_{n=1}^{\infty}
+c_n(e^{x^n}-1).
+\]
+
+We ask:
+
+\[
+\boxed{
+\text{For which real values of }x
+\text{ does this series converge?}
+}
+\]
+
+Later, the same question can be extended to complex values.
+
+This investigation will determine which tools from real and complex
+analysis we need to study.
+
+\subsubsection*{Stage 4 --- The natural function space}
+
+After understanding several convergence examples, we shall attempt to
+define rigorously a space
+
+\[
+\mathcal{M}_{\lambda}.
+\]
+
+Then we can ask:
+
+\begin{itemize}
+
+    \item Is \(\mathcal{M}_{\lambda}\) a vector space?
+
+    \item What notion of convergence is natural?
+
+    \item Is there a useful norm?
+
+    \item Do the blocks \(\psi_n\) form some type of basis?
+
+    \item Is the representation unique?
+
+    \item Is the space complete?
+
+\end{itemize}
+
+Only when such questions become meaningful will more advanced functional
+analysis be introduced.
+
+\subsubsection*{Stage 5 --- Operators}
+
+Once a function space has been chosen, we return to the operators
+
+\[
+T_mf(x)=f(x^m).
+\]
+
+Then we may rigorously investigate questions such as
+
+\begin{itemize}
+
+    \item Is \(T_m\) continuous?
+
+    \item Is \(T_m\) bounded?
+
+    \item What is its kernel?
+
+    \item What are its eigenvalues?
+
+    \item What is its spectrum?
+
+    \item How do combinations such as
+    \[
+    \sum_m d_mT_m
+    \]
+    act on the space?
+
+\end{itemize}
+
+At this point, operator theory will no longer be an abstract addition to the
+project.
+
+It will have become necessary.
+
+\subsubsection*{Stage 6 --- Literature}
+
+For each result we obtain, we shall determine whether it is already known.
+
+The intended order is
+
+\[
+\boxed{
+\text{discover}
+\longrightarrow
+\text{prove}
+\longrightarrow
+\text{search the literature}
+\longrightarrow
+\text{compare}.
+}
+\]
+
+If a result turns out to be known, the work is not wasted.
+
+By reconstructing the result independently, we understand why the theory
+exists and what problem it solves.
+
+Existing results may also reveal the correct language for formulating new
+questions.
+
+\subsubsection*{Stage 7 --- Difficult applications}
+
+Only after developing a basic theory will we investigate possible
+applications to objects such as
+
+\[
+\zeta(s),
+\qquad
+\xi(s),
+\qquad
+\sigma(n),
+\qquad
+\mu(n),
+\qquad
+\Lambda(n),
+\]
+
+and to questions involving
+
+\[
+\text{prime numbers},
+\qquad
+\text{perfect numbers},
+\qquad
+\text{additive number theory}.
+\]
+
+At that stage, we will be able to ask not only whether such objects can be
+represented, but whether the representation provides genuinely useful new
+information.
+
+% =========================================================
+\subsection{The role of computation}
+% =========================================================
+
+Computational experiments may be extremely useful throughout this
+investigation.
+
+We may use programs to
+
+\begin{itemize}
+
+    \item calculate the first coefficients \(c_n\);
+
+    \item search for patterns in the resulting sequences;
+
+    \item compare different functions;
+
+    \item study convergence numerically;
+
+    \item compute partial sums;
+
+    \item test conjectures before attempting proofs.
+
+\end{itemize}
+
+However, numerical evidence is not a proof.
+
+If the first thousand cases satisfy a property, this may suggest a
+conjecture, but it does not establish that the property holds in general.
+
+We therefore adopt the cycle
+
+\[
+\boxed{
+\text{experiment}
+\to
+\text{pattern}
+\to
+\text{conjecture}
+\to
+\text{proof}.
+}
+\]
+
+Computation will be used as an exploratory tool.
+
+% =========================================================
+\subsection{The role of counterexamples}
+% =========================================================
+
+Finding a counterexample should not be regarded as a failure.
+
+Suppose that after studying several examples we conjecture that
+
+\[
+P(n)
+\]
+
+is true for every \(n\).
+
+If we find a value \(n_0\) for which
+
+\[
+P(n_0)
+\]
+
+is false, then we have learned that our conjecture was too broad or was
+missing an important hypothesis.
+
+The counterexample helps reveal the correct statement.
+
+For this reason, we shall deliberately try to destroy our own conjectures.
+
+The guiding question will not only be
+
+\begin{quote}
+Why does this seem to be true?
+\end{quote}
+
+but also
+
+\begin{quote}
+How could this fail?
+\end{quote}
+
+% =========================================================
+\subsection{The immediate objective}
+% =========================================================
+
+The initial objective of this project is not to produce a paper as quickly
+as possible, nor to solve a famous open problem.
+
+The first objective is more fundamental:
+
+\[
+\boxed{
+\text{to build a theory that we understand completely.}
+}
+\]
+
+Ideally, we want to produce approximately twenty to thirty pages containing
+
+\begin{itemize}
+
+    \item precise definitions;
+
+    \item examples calculated by hand;
+
+    \item conjectures;
+
+    \item counterexamples;
+
+    \item propositions;
+
+    \item complete proofs;
+
+    \item questions that remain open;
+
+    \item clear connections with existing mathematical theories.
+
+\end{itemize}
+
+It may happen that a large portion of the structures discovered here are
+already known.
+
+This does not make the investigation useless.
+
+If we reconstruct these structures from our own questions, then we gain
+something different from merely learning established results: we learn how
+mathematical theory is created.
+
+And during that process, a genuinely new question may appear.
+
+% =========================================================
+\subsection{The first sequence of problems}
+% =========================================================
+
+Before introducing additional generalizations, the investigation will focus
+on the following problems.
+
+\begin{enumerate}
+
+    \item Find by hand the first coefficients \(c_n\) in
+
+    \[
+    x
+    =
+    \sum_{n=1}^{\infty}
+    c_n(e^{x^n}-1).
+    \]
+
+    \item Repeat the calculation for
+
+    \[
+    x^2.
+    \]
+
+    \item Compare the two coefficient sequences.
+
+    \item Repeat the process for
+
+    \[
+    x^3.
+    \]
+
+    \item Try to conjecture a formula for the general representation of
+
+    \[
+    x^r.
+    \]
+
+    \item Only after that, prove the formula.
+
+    \item Calculate the coefficients for
+
+    \[
+    \sin x.
+    \]
+
+    \item Compare them with the Taylor coefficients of \(\sin x\).
+
+    \item Investigate why divisors appear in the transformation.
+
+    \item Study Dirichlet convolution as the natural language for the
+    pattern that has emerged.
+
+    \item Return to the expansion of \(x\) and investigate whether it
+    converges as a real function.
+
+\end{enumerate}
+
+This sequence ensures that every new theory appears as a response to a
+concrete mathematical need.
+
+% =========================================================
+\subsection{A tree for future development}
+% =========================================================
+
+The investigation may be visualized as a tree.
+
+At the center we have
+
+\[
+\boxed{
+\psi_n(x)=e^{\lambda x^n}-1.
+}
+\]
+
+One branch is
+
+\[
+\psi_n
+\longrightarrow
+\text{formal power series}
+\longrightarrow
+\text{representation of functions}.
+\]
+
+A second branch is
+
+\[
+\psi_n
+\longrightarrow
+\text{divisibility}
+\longrightarrow
+\text{Dirichlet convolution}
+\longrightarrow
+\text{number theory}.
+\]
+
+A third branch is
+
+\[
+\psi_n
+\longrightarrow
+\text{convergence}
+\longrightarrow
+\text{real and complex analysis}.
+\]
+
+A fourth branch is
+
+\[
+\psi_n
+\longrightarrow
+T_m
+\longrightarrow
+\text{composition operators}.
+\]
+
+A fifth branch is
+
+\[
+\psi_n
+\longrightarrow
+e^{P(x)}
+\longrightarrow
+\text{exponentials of polynomials}.
+\]
+
+Only after these structures are well understood should we investigate deeper
+applications such as
+
+\[
+\text{arithmetic functions},
+\qquad
+\text{perfect numbers},
+\qquad
+\zeta(s),
+\qquad
+\xi(s),
+\qquad
+\text{questions about prime numbers}.
+\]
+
+The tree may continue growing indefinitely, but this does not mean that all
+branches must be followed simultaneously.
+
+At each stage, we shall choose one main branch.
+
+% =========================================================
+\subsection{Guiding principle}
+% =========================================================
+
+The guiding principle of the investigation will be
+
+\[
+\boxed{
+\text{do not study an advanced theory before a question appears that
+requires it.}
+}
+\]
+
+When divisor sums appear, we shall study Dirichlet convolution.
+
+When a convergence problem appears, we shall study the necessary analysis.
+
+When functions must be compared using a norm, we shall study normed spaces.
+
+When the operators \(T_m\) must be understood on a function space, we shall
+study operator theory.
+
+In this way, mathematical knowledge will not be accumulated as a collection
+of disconnected tools.
+
+Every new idea will have a clear origin inside the investigation.
+
+% =========================================================
+\subsection{Where we are}
+% =========================================================
+
+At the present stage, we do not yet know whether the family
+
+\[
+\psi_n(x)=e^{\lambda x^n}-1
+\]
+
+will lead to a new theory, a useful new representation, or primarily a new
+way to organize structures that are already known.
+
+This uncertainty is part of mathematical research.
+
+What we do know is that the family has natural connections with
+
+\[
+\text{power series},
+\]
+
+\[
+\text{divisibility},
+\]
+
+\[
+\text{composition},
+\]
+
+\[
+\text{arithmetic functions},
+\]
+
+and
+
+\[
+\text{exponentials of polynomials}.
+\]
+
+Our next objective will not be to add more connections.
+
+It will be to understand deeply the most elementary one:
+
+\[
+\boxed{
+\text{ordinary power series}
+\longleftrightarrow
+\text{monomial exponential series}.
+}
+\]
+
+For this purpose, we begin with the problem
+
+\[
+\boxed{
+x
+=
+\sum_{n=1}^{\infty}
+c_n(e^{x^n}-1).
+}
+\]
+
+We shall calculate the coefficients, search for patterns, formulate
+conjectures, and attempt to prove them.
+
+From that point onward, we shall allow the mathematics itself to determine
+the next step.
 
 \end{document}
 
