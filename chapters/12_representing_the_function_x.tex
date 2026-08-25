@@ -1,0 +1,73 @@
+% !TeX root = ../main.tex
+
+\chapter{Representing the Function $x$}
+
+% =================================================
+
+Let's try do define the function $x$ in terms of the centered series.
+
+    \[
+    x = \sum_{n\geq1} c_n \phi_n(x)
+    \]
+
+where $\phi_n(x)$ is the centered block of order $n$ with that can be represented as:
+    \[
+    \phi_n(x) = e^{x^n} - 1
+    \]
+
+Now we need to find the coefficients $c_n$ such that the above equation holds. For that, we can use the fact that
+the expansion of $e^{x}$ is given by:
+    \[
+    e^{x} = \sum_{k=0}^{\infty} \frac{x^{k}}{k!}
+    \]
+
+Follows that we can write:
+    \[
+    e^{x^n} - 1 = \sum_{k=1}^{\infty} \frac{x^{nk}}{k!}
+    \]
+
+Substituting this into the original equation, we have:
+    \[
+    x = \sum_{n\geq1} c_n \sum_{k=1}^{\infty} \frac{x^{nk}}{k!}
+    \]
+
+Expanding the right-hand side, we get:
+    \[
+    x = c_1 \sum_{k=1}^{\infty} \frac{x^{k}}{k!} + c_2 \sum_{k=1}^{\infty} \frac{x^{2k}}{k!} + c_3 \sum_{k=1}^{\infty} \frac{x^{3k}}{k!} + \ldots
+    \]
+
+Also expanding each term, we have:
+    \[
+    x = c_1 \left( \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots \right) + c_2 \left( \frac{x^2}{1!} + \frac{x^4}{2!} + \frac{x^6}{3!} + \ldots \right) + c_3 \left( \frac{x^3}{1!} + \frac{x^6}{2!} + \frac{x^9}{3!} + \ldots \right) + \ldots
+    \]
+OBS.: We can not that each term have coefficients that are multiples of the order of the block, for example, the second term has coefficients for $x^2$, $x^4$, $x^6$, etc. which are multiples of $2$.
+Now, we can start grouping the terms by powers of $x$ and we get:
+    \[
+    x = \left( c_1 \frac{1}{1!} \right) x + \left( c_1 \frac{1}{2!} + c_2 \frac{1}{1!} \right) x^2 + \left( c_1 \frac{1}{3!} + c_3 \frac{1}{1!} \right) x^3 + \ldots
+    \]
+
+Analyzing the coefficients of $x^n$ on both sides, we can set up a system of equations to solve for the coefficients $c_n$. Observe that the only non-zero coefficient on the left-hand side is for $x^1$, which is $1$. Therefore, we can set up the following system of equations:
+
+    \[
+    \begin{cases}
+    c_1 \frac{1}{1!} = 1 \\
+    c_1 \frac{1}{2!} + c_2 \frac{1}{1!} = 0 \\
+    c_1 \frac{1}{3!} + c_3 \frac{1}{1!} = 0 \\
+    c_1 \frac{1}{4!} + c_2 \frac{1}{2!} + c_4 \frac{1}{1!} = 0 \\
+    c_1 \frac{1}{5!} + c_3 \frac{1}{2!} + c_5 \frac{1}{1!} = 0 \\
+    \vdots
+    \end{cases}
+    \]
+
+Substituting the first equation into the others, we can solve for the coefficients $c_n$ recursively. The first 5 coefficients are:
+    \[
+    c_1 = 1, \quad c_2 = -\frac{1}{2}, \quad c_3 = -\frac{1}{6}, \quad c_4 = \frac{-5}{24}, \quad c_5 = \frac{-1}{120}
+    \]
+
+As we can note, when the number is a prime it just appears at the first block with order equal to 1 and in the order equal to the prime, when the number is not a prime it appears in multiple blocks but
+following a pattern where each divisor of the number appears in each block with this order by these facts we can conclude that the coefficients $c_n$ are given by the following formula:
+    \[
+    c_n = \sum_{n|k} \frac{c_n}{(k/n)!}
+    \]
+
+The sum of all n that divide k.

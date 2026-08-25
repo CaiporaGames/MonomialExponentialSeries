@@ -74,3 +74,4 @@
 \contentsline {subsection}{\numberline {11.2.17}A tree for future development}{52}{subsection.11.2.17}%
 \contentsline {subsection}{\numberline {11.2.18}Guiding principle}{53}{subsection.11.2.18}%
 \contentsline {subsection}{\numberline {11.2.19}Where we are}{53}{subsection.11.2.19}%
+\contentsline {chapter}{\numberline {12}Representing the Function $x$}{55}{chapter.12}%
