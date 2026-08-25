@@ -1,0 +1,222 @@
+% !TeX root = ../main.tex
+
+\chapter{Differentiation}
+
+% =================================================
+
+Let
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+Differentiating gives
+
+\[
+\phi_n'(x)
+=
+n\lambda x^{n-1}e^{\lambda x^n}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n'(x)
+=
+n\lambda x^{n-1}\phi_n(x).
+}
+\]
+
+The original family
+
+\[
+\{
+\phi_n
+\}
+\]
+
+is therefore not closed under differentiation because a polynomial
+factor appears.
+
+However, this suggests enlarging the family.
+
+Consider functions of the form
+
+\[
+x^k\phi_n(x).
+\]
+
+Differentiate:
+
+\[
+\frac{d}{dx}
+\left(
+x^k\phi_n(x)
+\right)
+=
+kx^{k-1}\phi_n(x)
++
+x^k\phi_n'(x).
+\]
+
+Therefore
+
+\[
+\boxed{
+\frac{d}{dx}
+\left(
+x^k\phi_n(x)
+\right)
+=
+kx^{k-1}\phi_n(x)
++
+n\lambda x^{k+n-1}\phi_n(x).
+}
+\]
+
+Both terms remain in the enlarged family
+
+\[
+\boxed{
+\mathcal{D}
+=
+\{
+x^k e^{\lambda x^n}
+:
+k\geq0,\ n\geq1
+\}.
+}
+\]
+
+Thus this larger family \emph{is} closed under differentiation.
+
+% =================================================
+\section{Connection with Differential Equations}
+% =================================================
+
+Each block satisfies a first-order differential equation.
+
+From
+
+\[
+\phi_n'(x)
+=
+n\lambda x^{n-1}\phi_n(x),
+\]
+
+we obtain
+
+\[
+\boxed{
+\phi_n'(x)
+-
+n\lambda x^{n-1}\phi_n(x)
+=
+0.
+}
+\]
+
+Define the differential operator
+
+\[
+L_n
+=
+\frac{d}{dx}
+-
+n\lambda x^{n-1}.
+\]
+
+Then
+
+\[
+\boxed{
+L_n\phi_n=0.
+}
+\]
+
+Thus every basic block is the solution of a simple first-order linear
+differential equation.
+
+This gives another possible direction:
+
+\begin{question}
+
+Can properties of a monomial exponential series be described using
+the collection of differential operators
+
+\[
+L_1,L_2,L_3,\ldots?
+\]
+
+\end{question}
+
+% =================================================
+\section{Multiplication of Blocks}
+% =================================================
+
+Let us also investigate multiplication.
+
+Take
+
+\[
+\phi_m(x)=e^{\lambda x^m}
+\]
+
+and
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+Then
+
+\[
+\phi_m(x)\phi_n(x)
+=
+e^{\lambda x^m}
+e^{\lambda x^n}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_m(x)\phi_n(x)
+=
+e^{\lambda(x^m+x^n)}.
+}
+\]
+
+In general this is not another basic block.
+
+Thus
+
+\[
+\{\phi_n\}
+\]
+
+is not closed under multiplication.
+
+However, multiplication naturally leads to the larger family
+
+\[
+\boxed{
+e^{\lambda P(x)},
+}
+\]
+
+where \(P(x)\) is a polynomial.
+
+For example,
+
+\[
+\phi_2(x)\phi_5(x)
+=
+e^{\lambda(x^2+x^5)}.
+\]
+
+This suggests that the monomial exponential blocks sit naturally
+inside a larger theory of exponentials of polynomials.
+
+% =================================================

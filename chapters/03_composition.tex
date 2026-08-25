@@ -1,0 +1,205 @@
+% !TeX root = ../main.tex
+
+\chapter{Composition}
+
+\section{Composition by Powers}
+% =================================================
+
+Consider
+
+\[
+\phi_n(x)=b^{x^n}.
+\]
+
+Replace \(x\) by \(x^m\). Then
+
+\[
+\phi_n(x^m)
+=
+b^{(x^m)^n}
+=
+b^{x^{mn}}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n(x^m)=\phi_{mn}(x).
+}
+\]
+
+For example,
+
+\[
+\phi_2(x^3)
+=
+b^{(x^3)^2}
+=
+b^{x^6}
+=
+\phi_6(x),
+\]
+
+while
+
+\[
+\phi_3(x^2)
+=
+b^{(x^2)^3}
+=
+b^{x^6}
+=
+\phi_6(x).
+\]
+
+Hence
+
+\[
+\boxed{
+\phi_2(x^3)
+=
+\phi_3(x^2)
+=
+\phi_6(x).
+}
+\]
+
+More generally,
+
+\[
+\boxed{
+\phi_n(x^m)
+=
+\phi_m(x^n)
+=
+\phi_{mn}(x).
+}
+\]
+
+Thus multiplication of natural-number indices corresponds to
+composition with power maps.
+
+% =================================================
+\section{Composition Operators}
+% =================================================
+
+The previous phenomenon becomes clearer if we introduce an operator.
+
+For every \(m\in\N\), define
+
+\[
+\boxed{
+T_mF(x)=F(x^m).
+}
+\]
+
+Then, when \(T_m\) acts on one of our basic blocks,
+
+\[
+T_m\phi_n(x)
+=
+\phi_n(x^m).
+\]
+
+Therefore
+
+\[
+\boxed{
+T_m\phi_n=\phi_{mn}.
+}
+\]
+
+Now consider two such operators:
+
+\[
+T_mT_nF(x).
+\]
+
+We first apply \(T_n\):
+
+\[
+T_nF(x)=F(x^n).
+\]
+
+Then
+
+\[
+T_mT_nF(x)
+=
+F((x^m)^n)
+=
+F(x^{mn}).
+\]
+
+Hence
+
+\[
+\boxed{
+T_mT_n=T_{mn}.
+}
+\]
+
+Since multiplication of natural numbers is commutative,
+
+\[
+mn=nm,
+\]
+
+we also have
+
+\[
+\boxed{
+T_mT_n=T_nT_m.
+}
+\]
+
+Finally,
+
+\[
+T_1F(x)=F(x),
+\]
+
+so
+
+\[
+\boxed{
+T_1=I.
+}
+\]
+
+We therefore obtain the same algebraic laws as the multiplicative
+monoid
+
+\[
+(\N,\cdot).
+\]
+
+
+
+\noindent\textbf{Concrete examples.}
+\begin{itemize}
+  \item If \(F(x)=\phi_2(x)+3\phi_5(x)=b^{x^2}+3b^{x^5}\), then
+  
+
+\[
+  T_3F(x)=F(x^3)=b^{(x^3)^2}+3b^{(x^3)^5}=b^{x^6}+3b^{x^{15}}=\phi_6(x)+3\phi_{15}(x).
+  \]
+
+
+  \item If \(G(x)=\sum_{n\ge1} c_n\phi_n(x)\), then
+  
+
+\[
+  T_mG(x)=\sum_{n\ge1} c_n\phi_n(x^m)=\sum_{n\ge1} c_n\phi_{mn}(x),
+  \]
+
+
+  so the coefficient at index \(n\) is transported to index \(mn\).
+\end{itemize}
+
+\medskip
+
+\noindent These formulas make explicit the correspondence between functional composition with power maps and multiplication of natural-number indices.
+
+% =================================================

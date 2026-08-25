@@ -1,0 +1,342 @@
+% !TeX root = ../main.tex
+
+\chapter{Representation Theorem}
+
+\section{A New Expansion in Centered Blocks}
+% =================================================
+
+Consider an ordinary formal power series
+
+\[
+f(x)
+=
+f(0)
++
+t_1x
++
+t_2x^2
++
+t_3x^3
++\cdots.
+\]
+
+We can ask whether it is possible to write
+
+\[
+\boxed{
+f(x)
+=
+f(0)
++
+\sum_{n\geq1}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right).
+}
+\]
+
+Expanding the right-hand side gives
+
+\[
+\sum_{n\geq1}
+c_n
+\sum_{k\geq1}
+\frac{\lambda^k}{k!}x^{nk}.
+\]
+
+Therefore the coefficient \(t_m\) must satisfy
+
+\[
+\boxed{
+t_m
+=
+\sum_{n\mid m}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+}
+\]
+
+Among the divisors of \(m\) is \(n=m\).
+
+The corresponding contribution is
+
+\[
+c_m\lambda.
+\]
+
+Hence
+
+\[
+t_m
+=
+\lambda c_m
++
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+\]
+
+Solving for \(c_m\),
+
+\[
+\boxed{
+c_m
+=
+\frac{1}{\lambda}
+\left[
+t_m
+-
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}
+\right].
+}
+\]
+
+This gives a recursive procedure for constructing the coefficients
+\(c_m\).
+
+% =================================================
+\section{Formal Representation Theorem}
+% =================================================
+
+The previous recursion gives an interesting result.
+
+\begin{theorem}
+
+Let
+
+\[
+\lambda\neq0.
+\]
+
+Every formal power series
+
+\[
+f(x)
+=
+f(0)+\sum_{m\geq1}t_mx^m
+\]
+
+has a unique formal representation of the form
+
+\[
+\boxed{
+f(x)
+=
+f(0)
++
+\sum_{n\geq1}
+c_n
+\left(
+e^{\lambda x^n}-1
+\right).
+}
+\]
+
+\end{theorem}
+
+\begin{proof}
+
+For \(m=1\),
+
+\[
+t_1=\lambda c_1,
+\]
+
+so
+
+\[
+c_1=\frac{t_1}{\lambda}.
+\]
+
+Suppose
+
+\[
+c_1,\ldots,c_{m-1}
+\]
+
+have already been determined.
+
+Then
+
+\[
+t_m
+=
+\lambda c_m
++
+\sum_{\substack{n\mid m\\n<m}}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+\]
+
+Every term in the sum is already known.
+
+Since
+
+\[
+\lambda\neq0,
+\]
+
+we can solve uniquely for \(c_m\).
+
+Proceeding recursively determines every coefficient \(c_m\).
+
+\end{proof}
+
+\begin{remark}
+
+This theorem concerns formal power series.
+
+It does not automatically imply that the corresponding infinite
+series converges as a function for a particular value of \(x\).
+
+Understanding when the formal representation becomes an analytic
+representation is a separate and important problem.
+
+\end{remark}
+
+% =================================================
+\section{Prime Indices in the Taylor Transform}
+% =================================================
+
+The divisor formula becomes especially simple for prime indices.
+
+Suppose \(p\) is prime.
+
+Its only positive divisors are
+
+\[
+1
+\qquad\text{and}\qquad
+p.
+\]
+
+Therefore
+
+\[
+t_p
+=
+c_1\frac{\lambda^p}{p!}
++
+c_p\lambda.
+\]
+
+Hence
+
+\[
+\boxed{
+c_p
+=
+\frac{1}{\lambda}
+\left(
+t_p
+-
+c_1\frac{\lambda^p}{p!}
+\right).
+}
+\]
+
+For a composite number, more terms appear.
+
+For example, the divisors of \(6\) are
+
+\[
+1,2,3,6.
+\]
+
+Therefore
+
+\[
+t_6
+=
+c_1\frac{\lambda^6}{6!}
++
+c_2\frac{\lambda^3}{3!}
++
+c_3\frac{\lambda^2}{2!}
++
+c_6\lambda.
+\]
+
+Thus the arithmetic complexity of the index controls the number of
+interactions between coefficients.
+
+% =================================================
+\section{Linear Independence}
+% =================================================
+
+The centered blocks are also linearly independent.
+
+\begin{proposition}
+
+For \(\lambda\neq0\), the functions
+
+\[
+\psi_n(x)
+=
+e^{\lambda x^n}-1,
+\qquad n\geq1,
+\]
+
+are linearly independent with respect to finite linear combinations.
+
+\end{proposition}
+
+\begin{proof}
+
+Suppose
+
+\[
+c_1\psi_1(x)
++
+c_2\psi_2(x)
++\cdots+
+c_N\psi_N(x)
+=
+0.
+\]
+
+Assume not all coefficients are zero.
+
+Let \(m\) be the smallest index for which
+
+\[
+c_m\neq0.
+\]
+
+The lowest power of \(x\) contributed by \(\psi_m\) is
+
+\[
+\lambda x^m.
+\]
+
+Blocks with index greater than \(m\) cannot contribute to \(x^m\).
+
+Blocks with index smaller than \(m\) have coefficient zero by the
+minimality of \(m\).
+
+Therefore the coefficient of \(x^m\) in the entire expression is
+
+\[
+\lambda c_m.
+\]
+
+Since
+
+\[
+\lambda\neq0
+\qquad\text{and}\qquad
+c_m\neq0,
+\]
+
+this coefficient cannot vanish.
+
+This is a contradiction.
+
+Hence every \(c_n\) must be zero.
+
+\end{proof}
+
+% =================================================

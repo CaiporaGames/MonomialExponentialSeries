@@ -1,0 +1,434 @@
+% !TeX root = ../main.tex
+
+\chapter{Divisibility}
+
+\section{Prime Factorisation as Operator Factorisation}
+% =================================================
+
+Suppose
+
+\[
+n
+=
+p_1^{\alpha_1}
+p_2^{\alpha_2}
+\cdots
+p_r^{\alpha_r}
+\]
+
+is the prime factorisation of \(n\).
+
+Because
+
+\[
+T_mT_n=T_{mn},
+\]
+
+we obtain
+
+\[
+\boxed{
+T_n
+=
+T_{p_1}^{\alpha_1}
+T_{p_2}^{\alpha_2}
+\cdots
+T_{p_r}^{\alpha_r}.
+}
+\]
+
+For example,
+
+\[
+12=2^2\cdot3,
+\]
+
+and therefore
+
+\[
+\boxed{
+T_{12}=T_2^2T_3.
+}
+\]
+
+Acting on \(\phi_1\),
+
+\[
+T_{12}\phi_1=\phi_{12}.
+\]
+
+But we may reach the same block through
+
+\[
+T_2T_2T_3\phi_1.
+\]
+
+Thus prime factorisation of integers becomes factorisation of
+composition operators.
+
+This suggests that the operators
+
+\[
+T_2,T_3,T_5,T_7,\ldots
+\]
+
+play the role of fundamental generators.
+
+% =================================================
+\section{Divisibility as Reachability}
+% =================================================
+
+We now obtain a direct interpretation of divisibility.
+
+Suppose \(d,n\in\N\).
+
+If
+
+\[
+d\mid n,
+\]
+
+then there exists an integer \(m\) such that
+
+\[
+n=dm.
+\]
+
+Consequently,
+
+\[
+T_m\phi_d
+=
+\phi_{dm}
+=
+\phi_n.
+\]
+
+Therefore
+
+\[
+\boxed{
+d\mid n
+\quad\Longleftrightarrow\quad
+\phi_n
+\text{ can be reached from }
+\phi_d
+\text{ by some }T_m.
+}
+\]
+
+This allows us to interpret the divisibility relation geometrically as
+a network of function transformations.
+
+For example,
+
+\[
+\phi_2
+\longrightarrow
+\phi_4
+\longrightarrow
+\phi_8
+\]
+
+corresponds to
+
+\[
+2\mid4\mid8.
+\]
+
+Similarly,
+
+\[
+\phi_3
+\longrightarrow
+\phi_6
+\longrightarrow
+\phi_{12}
+\]
+
+corresponds to
+
+\[
+3\mid6\mid12.
+\]
+
+\subsection*{Why divisibility as a network of function transformations matters}
+
+Interpreting the divisibility relation \(d\mid n\) as a directed edge
+\(\phi_d\to\phi_n\) in a graph of functions turns an arithmetic relation
+into a geometric and dynamical object. This viewpoint is useful for several reasons.
+
+\paragraph{Visualization and intuition.}
+Representing indices as nodes and divisibility as arrows makes chains and
+reachability immediate. For instance,
+
+
+\[
+\phi_2\longrightarrow\phi_4\longrightarrow\phi_8
+\]
+
+
+visually encodes \(2\mid4\mid8\).
+
+\paragraph{Operator algebra.}
+The substitution operators \(T_m\) defined by \(T_mF(x)=F(x^m)\) satisfy
+\(T_mT_n=T_{mn}\). Thus multiplicative identities among integers become
+algebraic identities among operators, allowing analytic techniques to
+study arithmetic phenomena.
+
+\paragraph{Bridge between analysis and number theory.}
+The same family \(\{\phi_n\}\) links functional analysis (composition,
+differentiation, operator theory) with multiplicative number theory
+(Dirichlet convolution, Möbius inversion). For example, operators of the
+form \(\sum_{m\ge1}d_mT_m\) act on coefficient sequences by Dirichlet
+convolution.
+
+\paragraph{New invariants and classifications.}
+Graph-theoretic notions such as distance, minimal predecessors, and
+connected components yield invariants of indices that are not obvious in
+the purely arithmetic setting; these invariants can detect factorization
+patterns and structural symmetries.
+
+\paragraph{Constructive and inverse methods.}
+Natural operators (e.g. the divisor-sum operator \(D=\sum T_m\)) and
+their inverses (via Möbius inversion) provide operational tools to
+decompose and reconstruct series expressed in the \(\phi_n\) basis.
+
+\paragraph{Potential applications.}
+This perspective suggests new approaches in asymptotic analysis,
+differential equations, combinatorics, and probabilistic models where
+reachability by multiplication plays a role.
+
+
+% =================================================
+\section{A Divisibility Diagram}
+% =================================================
+
+The relation can be visualised using a small portion of the
+divisibility lattice.
+
+\begin{center}
+
+\begin{tikzpicture}[
+    node distance=1.5cm and 1.7cm,
+    every node/.style={draw,rounded corners,inner sep=5pt},
+    >=Stealth
+]
+
+\node (p1) {$\phi_1$};
+
+\node (p2) [below left=of p1] {$\phi_2$};
+\node (p3) [below right=of p1] {$\phi_3$};
+
+\node (p4) [below=of p2] {$\phi_4$};
+\node (p6) [below right=of p2] {$\phi_6$};
+
+\node (p12) [below right=of p4] {$\phi_{12}$};
+
+\draw[->] (p1) -- node[left,draw=none] {$T_2$} (p2);
+\draw[->] (p1) -- node[right,draw=none] {$T_3$} (p3);
+
+\draw[->] (p2) -- node[left,draw=none] {$T_2$} (p4);
+\draw[->] (p2) -- node[above,draw=none] {$T_3$} (p6);
+
+\draw[->] (p3) -- node[right,draw=none] {$T_2$} (p6);
+
+\draw[->] (p4) -- node[left,draw=none] {$T_3$} (p12);
+\draw[->] (p6) -- node[right,draw=none] {$T_2$} (p12);
+
+\end{tikzpicture}
+
+\end{center}
+
+Different paths may lead to the same function because multiplication
+is commutative.
+
+For example,
+
+\[
+T_2T_3\phi_1
+=
+T_3T_2\phi_1
+=
+\phi_6.
+\]
+
+% =================================================
+\section{Greatest Common Divisors and Least Common Multiples}
+% =================================================
+
+The divisibility interpretation also introduces naturally the
+greatest common divisor and least common multiple.
+
+Take two blocks
+
+\[
+\phi_m
+\qquad\text{and}\qquad
+\phi_n.
+\]
+
+A block \(\phi_d\) is a common predecessor when
+
+\[
+d\mid m
+\qquad\text{and}\qquad
+d\mid n.
+\]
+
+The largest possible such index is
+
+\[
+d=\gcd(m,n).
+\]
+
+Thus
+
+\[
+\boxed{
+\phi_{\gcd(m,n)}
+}
+\]
+
+is the greatest common predecessor of \(\phi_m\) and \(\phi_n\).
+
+Similarly, a block \(\phi_k\) is a common descendant if
+
+\[
+m\mid k
+\qquad\text{and}\qquad
+n\mid k.
+\]
+
+The smallest such index is
+
+\[
+k=\operatorname{lcm}(m,n).
+\]
+
+Hence
+
+\[
+\boxed{
+\phi_{\operatorname{lcm}(m,n)}
+}
+\]
+
+is the smallest common descendant.
+
+For example,
+
+\[
+\gcd(4,6)=2
+\]
+
+and
+
+\[
+\operatorname{lcm}(4,6)=12.
+\]
+
+Therefore
+
+\[
+\phi_2
+\]
+
+is the greatest common predecessor of
+
+\[
+\phi_4,\phi_6,
+\]
+
+while
+
+\[
+\phi_{12}
+\]
+
+is their smallest common descendant.
+
+% =================================================
+\section{Prime Blocks are Indecomposable}
+% =================================================
+
+Consider
+
+\[
+\phi_6(x)=b^{x^6}.
+\]
+
+Because
+
+\[
+6=2\cdot3,
+\]
+
+we can write
+
+\[
+\phi_6(x)
+=
+\phi_2(x^3)
+=
+\phi_3(x^2).
+\]
+
+Similarly,
+
+\[
+12=2\cdot6=3\cdot4,
+\]
+
+so
+
+\[
+\phi_{12}(x)
+=
+\phi_2(x^6)
+=
+\phi_3(x^4)
+=
+\phi_4(x^3)
+=
+\phi_6(x^2).
+\]
+
+However, suppose \(p\) is prime.
+
+If
+
+\[
+\phi_p(x)=\phi_m(x^n)
+\]
+
+with
+
+\[
+m>1,
+\qquad
+n>1,
+\]
+
+then we would have
+
+\[
+p=mn,
+\]
+
+contradicting the primality of \(p\).
+
+Therefore prime-indexed blocks are indecomposable under non-trivial
+power composition.
+
+\begin{proposition}
+
+If \(p\) is prime, then there do not exist \(m,n>1\) such that
+
+\[
+\phi_p(x)=\phi_m(x^n).
+\]
+
+\end{proposition}
+
+% =================================================

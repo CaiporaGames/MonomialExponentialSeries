@@ -1,0 +1,464 @@
+% !TeX root = ../main.tex
+
+\chapter{Dirichlet Convolution}
+
+\section{Composition Acting on the Coefficients}
+% =================================================
+
+Now consider
+
+\[
+F(x)
+=
+\sum_{n\geq1}c_n\phi_n(x).
+\]
+
+Applying \(T_m\), we obtain
+
+\[
+T_mF(x)
+=
+F(x^m).
+\]
+
+Therefore
+
+\[
+F(x^m)
+=
+\sum_{n\geq1}c_n\phi_n(x^m).
+\]
+
+Using
+
+\[
+\phi_n(x^m)=\phi_{mn}(x),
+\]
+
+we obtain
+
+\[
+\boxed{
+T_mF
+=
+\sum_{n\geq1}c_n\phi_{mn}.
+}
+\]
+
+For \(m=2\),
+
+\[
+T_2F
+=
+c_1\phi_2
++
+c_2\phi_4
++
+c_3\phi_6
++
+c_4\phi_8
++\cdots.
+\]
+
+Thus the coefficient positions
+
+\[
+1,2,3,4,\ldots
+\]
+
+are sent to
+
+\[
+2,4,6,8,\ldots.
+\]
+
+For \(m=3\), they are sent to
+
+\[
+3,6,9,12,\ldots.
+\]
+
+More generally,
+
+\[
+\boxed{
+n\longmapsto mn.
+}
+\]
+
+% =================================================
+\section{Dirichlet Convolution Appears}
+% =================================================
+
+A stronger connection appears when we combine several composition
+operators.
+
+Let
+
+\[
+A
+=
+\sum_{m\geq1}d_mT_m,
+\]
+
+where \(d_m\) is another sequence.
+
+Apply \(A\) to
+
+\[
+F(x)
+=
+\sum_{n\geq1}c_n\phi_n(x).
+\]
+
+Then
+
+\[
+AF
+=
+\sum_{m\geq1}
+d_mT_m
+\left(
+\sum_{n\geq1}c_n\phi_n
+\right).
+\]
+
+Formally,
+
+\[
+AF
+=
+\sum_{m,n\geq1}
+d_mc_n\phi_{mn}.
+\]
+
+Now collect all terms whose index is equal to \(k\).
+
+The equation
+
+\[
+mn=k
+\]
+
+is equivalent to
+
+\[
+m\mid k,
+\qquad
+n=\frac{k}{m}.
+\]
+
+Therefore the coefficient of \(\phi_k\) becomes
+
+\[
+\sum_{m\mid k}
+d_m c_{k/m}.
+\]
+
+Thus
+
+\[
+\boxed{
+AF
+=
+\sum_{k\geq1}
+\left(
+\sum_{m\mid k}
+d_m c_{k/m}
+\right)
+\phi_k.
+}
+\]
+
+But the expression
+
+\[
+(d*c)(k)
+=
+\sum_{m\mid k}
+d_m c_{k/m}
+\]
+
+is precisely the \emph{Dirichlet convolution} of the sequences
+\(d\) and \(c\).
+
+Therefore
+
+\[
+\boxed{
+\left(
+\sum_{m\geq1}d_mT_m
+\right)
+F
+\quad\longleftrightarrow\quad
+d*c.
+}
+\]
+
+This gives a direct connection between composition of functions and
+one of the central operations of multiplicative number theory.
+
+\subsection*{Relation to Dirichlet convolution}
+
+Two distinct structures coexist in the monomial‑exponential framework.
+
+\paragraph{1. Functional layer.}
+The substitution operators
+
+
+\[
+T_m:F(x)\mapsto F(x^m)
+\]
+
+
+act on functions. When these operators act on the basic blocks
+\(\phi_n(x)=e^{\lambda x^n}\) we have
+
+
+\[
+T_m\phi_n=\phi_{mn},
+\]
+
+
+so composition of power maps corresponds to multiplication of indices:
+
+
+\[
+T_mT_n=T_{mn}.
+\]
+
+
+
+\paragraph{2. Arithmetic layer.}
+If
+
+
+\[
+F(x)=\sum_{n\ge1} c_n\phi_n(x),
+\]
+
+
+and one forms a linear combination of composition operators
+
+
+\[
+A=\sum_{m\ge1} d_m T_m,
+\]
+
+
+then the action of \(A\) on \(F\) rearranges coefficients by multiplicative index relations:
+
+
+\[
+AF=\sum_{m,n\ge1} d_m c_n \phi_{mn}
+=\sum_{k\ge1}\Big(\sum_{m\mid k} d_m c_{k/m}\Big)\phi_k.
+\]
+
+
+The inner sum \(\sum_{m\mid k} d_m c_{k/m}\) is precisely the Dirichlet convolution
+\((d*c)(k)\). Thus the operator \(A\) corresponds to the arithmetic operation \(d*c\)
+on the coefficient sequences.
+
+\paragraph{Conclusion.}
+The analytic composition operators encode multiplicative structure of indices,
+while Dirichlet convolution governs how coefficient sequences combine under those operators.
+Consequently, many algebraic and inversion phenomena (e.g. divisor‑sum operators and Möbius inversion)
+appear naturally in this setting.
+
+
+% =================================================
+\section{The Divisor-Sum Operator}
+% =================================================
+
+Consider the special case
+
+\[
+d_m=1
+\]
+
+for every \(m\).
+
+Define formally
+
+\[
+D
+=
+\sum_{m\geq1}T_m.
+\]
+
+Then the coefficient of \(\phi_k\) in \(DF\) is
+
+\[
+\sum_{m\mid k}c_{k/m}.
+\]
+
+Renaming the divisor,
+
+\[
+\boxed{
+\sum_{d\mid k}c_d.
+}
+\]
+
+Thus the operator \(D\) transforms the coefficient sequence
+
+\[
+c_k
+\]
+
+into its divisor-sum sequence
+
+\[
+\boxed{
+g_k=\sum_{d\mid k}c_d.
+}
+\]
+
+This is exactly the type of transformation for which Möbius inversion
+is designed.
+
+\subsection*{The Divisor‑Sum Operator: practical examples}
+
+Define the divisor‑sum operator
+
+
+\[
+D=\sum_{m\ge1}T_m,\qquad T_mF(x)=F(x^m).
+\]
+
+
+If
+
+
+\[
+F(x)=\sum_{n\ge1}c_n\phi_n(x),
+\]
+
+
+then
+
+
+\[
+DF(x)=\sum_{k\ge1}\Big(\sum_{d\mid k}c_d\Big)\phi_k(x).
+\]
+
+
+Thus the coefficient transform is
+
+
+\[
+g_k=\sum_{d\mid k}c_d,
+\]
+
+
+i.e. \(g=\mathbf{1}*c\) (Dirichlet convolution with the constant function \(1\)).
+
+\paragraph{Numerical example.}
+Let \(c_1=1,\ c_2=2,\ c_3=0,\ c_4=1\). Then
+
+
+\[
+\begin{aligned}
+g_1&=c_1=1,\\
+g_2&=c_1+c_2=3,\\
+g_3&=c_1+c_3=1,\\
+g_4&=c_1+c_2+c_4=4.
+\end{aligned}
+\]
+
+
+Hence
+
+
+\[
+DF(x)=\phi_1+3\phi_2+\phi_3+4\phi_4+\cdots.
+\]
+
+
+Recover \(c\) from \(g\) by Möbius inversion:
+
+
+\[
+c_n=\sum_{d\mid n}\mu(d)\,g_{n/d},
+\]
+
+
+which reproduces \(c_1=1,\ c_2=2,\ c_3=0,\ c_4=1\).
+
+\paragraph{Matrix form (truncated).}
+For indices \(1\le n,k\le4\) the action of \(D\) is \(g=Mc\) with
+
+
+\[
+M_{k,n}=\begin{cases}1,& n\mid k,\\0,&\text{otherwise,}\end{cases}
+\qquad
+M=\begin{pmatrix}
+1 & 0 & 0 & 0\\
+1 & 1 & 0 & 0\\
+1 & 0 & 1 & 0\\
+1 & 1 & 0 & 1
+\end{pmatrix}.
+\]
+
+
+
+\paragraph{Remarks.}
+The divisor‑sum operator is a concrete bridge between the operator
+language \(T_m\) and multiplicative number theory: linear combinations
+of the \(T_m\) correspond to Dirichlet convolutions on coefficient
+sequences, and Möbius inversion provides the natural inverse procedure.
+
+
+% =================================================
+\section{Möbius Inversion}
+% =================================================
+
+Suppose
+
+\[
+g_n
+=
+\sum_{d\mid n}c_d.
+\]
+
+Then Möbius inversion gives
+
+\[
+\boxed{
+c_n
+=
+\sum_{d\mid n}
+\mu(d)
+g_{n/d},
+}
+\]
+
+where \(\mu\) is the Möbius function.
+
+Therefore a classical number-theoretic inversion formula appears
+naturally from the composition operators of our function family.
+
+Symbolically,
+
+\[
+\mathbf{1}*c=g,
+\]
+
+and
+
+\[
+\mu*g=c,
+\]
+
+because
+
+\[
+\mu*\mathbf{1}=\varepsilon.
+\]
+
+Here \(\varepsilon\) is the identity for Dirichlet convolution.
+
+This suggests a possible bridge between monomial exponential series
+and arithmetic functions.
+
+% =================================================

@@ -1,0 +1,258 @@
+% !TeX root = ../main.tex
+
+\chapter{Centered Blocks}
+
+\section{Changing the Exponential Base}
+% =================================================
+
+The choice of base \(b\) can be simplified.
+
+Since
+
+\[
+b=e^\lambda,
+\]
+
+we have
+
+\[
+b^{x^n}
+=
+e^{\lambda x^n}.
+\]
+
+Therefore it is enough to study
+
+\[
+\boxed{
+\phi_n(x)=e^{\lambda x^n}.
+}
+\]
+
+The parameter
+
+\[
+\lambda=\ln b
+\]
+
+contains all information about the base.
+
+There are three fundamentally different cases:
+
+\[
+\lambda>0
+\quad\Longleftrightarrow\quad
+b>1,
+\]
+
+\[
+\lambda<0
+\quad\Longleftrightarrow\quad
+0<b<1,
+\]
+
+and
+
+\[
+\lambda=0
+\quad\Longleftrightarrow\quad
+b=1.
+\]
+
+The case \(b=1\) is trivial because
+
+\[
+1^{x^n}=1
+\]
+
+for every \(n\).
+
+We shall therefore exclude it.
+
+% =================================================
+\section{Taylor Expansion of a Block}
+% =================================================
+
+The representation
+
+\[
+\phi_n(x)=e^{\lambda x^n}
+\]
+
+reveals another important structure.
+
+Recall that
+
+\[
+e^y
+=
+\sum_{k=0}^{\infty}\frac{y^k}{k!}.
+\]
+
+Substituting
+
+\[
+y=\lambda x^n,
+\]
+
+we obtain
+
+\[
+e^{\lambda x^n}
+=
+\sum_{k=0}^{\infty}
+\frac{\lambda^k x^{nk}}{k!}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n(x)
+=
+1
++
+\lambda x^n
++
+\frac{\lambda^2}{2!}x^{2n}
++
+\frac{\lambda^3}{3!}x^{3n}
++\cdots.
+}
+\]
+
+Notice something important:
+
+\[
+\phi_n
+\]
+
+contains only powers whose exponents are multiples of \(n\):
+
+\[
+n,2n,3n,4n,\ldots.
+\]
+
+Thus divisibility appears once again.
+
+% =================================================
+\section{Taylor Coefficients and Divisors}
+% =================================================
+
+Consider formally
+
+\[
+F(x)
+=
+\sum_{n\geq1}c_ne^{\lambda x^n}.
+\]
+
+Using the Taylor expansion,
+
+\[
+F(x)
+=
+\sum_{n\geq1}
+c_n
+\sum_{k\geq0}
+\frac{\lambda^k}{k!}x^{nk}.
+\]
+
+Suppose we want the coefficient of \(x^m\).
+
+A contribution appears exactly when
+
+\[
+nk=m.
+\]
+
+Therefore
+
+\[
+n\mid m.
+\]
+
+For \(m\geq1\), the coefficient of \(x^m\) is consequently
+
+\[
+\boxed{
+[x^m]F(x)
+=
+\sum_{n\mid m}
+c_n
+\frac{\lambda^{m/n}}{(m/n)!}.
+}
+\]
+
+This is another divisor sum.
+
+Thus divisibility enters the theory in two completely different ways:
+
+\[
+\text{composition}
+\quad\text{and}\quad
+\text{Taylor expansion}.
+\]
+
+This repetition suggests that the divisor structure is not merely
+accidental.
+
+% =================================================
+\section{Centered Blocks}
+% =================================================
+
+There is one inconvenience with the blocks
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+At \(x=0\),
+
+\[
+\phi_n(0)=1
+\]
+
+for every \(n\).
+
+It is therefore useful to define the centered blocks
+
+\[
+\boxed{
+\psi_n(x)
+=
+e^{\lambda x^n}-1.
+}
+\]
+
+Now
+
+\[
+\psi_n(0)=0.
+\]
+
+Their Taylor expansion is
+
+\[
+\psi_n(x)
+=
+\lambda x^n
++
+\frac{\lambda^2}{2!}x^{2n}
++
+\frac{\lambda^3}{3!}x^{3n}
++\cdots.
+\]
+
+The lowest-degree term is exactly
+
+\[
+\boxed{
+\lambda x^n.
+}
+\]
+
+This gives the family a triangular relationship with the ordinary
+monomials.
+
+% =================================================

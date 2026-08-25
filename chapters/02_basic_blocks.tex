@@ -1,0 +1,136 @@
+% !TeX root = ../main.tex
+
+\chapter{Basic Blocks}
+
+\section{Isolating the Basic Blocks}
+% =================================================
+
+Let us forget the coefficients for a moment and isolate the functions
+
+\[
+\boxed{
+\phi_n(x)=b^{x^n}.
+}
+\]
+
+Equivalently,
+
+\[
+\phi_n(x)=e^{\lambda x^n}.
+\]
+
+The first blocks are
+
+\[
+\phi_1(x)=b^x,
+\]
+
+\[
+\phi_2(x)=b^{x^2},
+\]
+
+\[
+\phi_3(x)=b^{x^3},
+\]
+
+\[
+\phi_4(x)=b^{x^4},
+\]
+
+and so on.
+
+Our series is therefore a linear combination of these blocks:
+
+\[
+\boxed{
+F(x)=a_0+\sum_{n=1}^{\infty}c_n\phi_n(x).
+}
+\]
+
+Thus the family
+
+\[
+\mathcal{B}
+=
+\{
+1,\phi_1,\phi_2,\phi_3,\ldots
+\}
+\]
+
+plays a role analogous to the familiar monomial family
+
+\[
+\{
+1,x,x^2,x^3,\ldots
+\}.
+\]
+
+However, its algebraic and analytic behaviour is very different.
+
+% =================================================
+\section{Connection with Ordinary Monomials}
+% =================================================
+
+The blocks are obtained directly from the ordinary monomials.
+
+Let
+
+\[
+q_n(x)=x^n.
+\]
+
+Then
+
+\[
+\phi_n(x)=b^{q_n(x)}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\phi_n=\exp_b\circ q_n,
+}
+\]
+
+where
+
+\[
+\exp_b(y)=b^y.
+\]
+
+This observation is important because some of the structure we shall
+discover is inherited from the monomials themselves.
+
+For example,
+
+\[
+q_n(q_m(x))
+=
+(x^m)^n
+=
+x^{mn}.
+\]
+
+Thus
+
+\[
+\boxed{
+q_n\circ q_m=q_{mn}.
+}
+\]
+
+The monomials already encode multiplication of their indices through
+composition.
+
+The exponential blocks preserve this structure after exponentiation.
+
+This distinction will be important:
+
+\begin{quote}
+The multiplicative behaviour of the indices is inherited from the
+monomials \(x^n\), while the new questions arise from taking linear
+combinations of the exponentiated monomials \(b^{x^n}\).
+\end{quote}
+
+% =================================================

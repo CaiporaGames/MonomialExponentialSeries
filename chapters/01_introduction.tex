@@ -1,0 +1,91 @@
+% !TeX root = ../main.tex
+
+\chapter{Introduction}
+
+% =================================================
+
+We begin with the family of series
+
+\[
+F(x)
+=
+a_0
++
+a_1b^{x^2}
++
+a_2b^{x^3}
++
+a_3b^{x^4}
++\cdots.
+\]
+
+A slightly cleaner indexing is obtained by writing
+
+\[
+F(x)
+=
+a_0+\sum_{n=1}^{\infty}c_n b^{x^n}.
+\]
+
+Throughout this text we assume
+
+\[
+b>0,
+\qquad
+b\neq1.
+\]
+
+It will often be useful to introduce
+
+\[
+\lambda=\ln b.
+\]
+
+Since
+
+\[
+b^{x^n}
+=
+e^{(\ln b)x^n},
+\]
+
+the series can equivalently be written as
+
+\[
+\boxed{
+F(x)
+=
+a_0+\sum_{n=1}^{\infty}c_n e^{\lambda x^n}.
+}
+\]
+
+We shall provisionally call such an expression a
+\emph{monomial exponential series}.
+
+The purpose of this document is not to claim that this family of
+functions has never appeared before, but rather to investigate the
+structures that naturally arise from it.
+
+In particular, we shall see connections with
+
+\[
+\text{composition}
+\longleftrightarrow
+\text{multiplication of indices},
+\]
+
+\[
+\text{divisibility}
+\longleftrightarrow
+\text{reachability between blocks},
+\]
+
+and, surprisingly,
+
+\[
+\text{composition operators}
+\longleftrightarrow
+\text{Dirichlet convolution}.
+\]
+
+% =================================================

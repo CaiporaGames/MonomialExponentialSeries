@@ -1,0 +1,374 @@
+% !TeX root = ../main.tex
+
+\chapter{Convergence}
+
+% =================================================
+
+We now investigate
+
+\[
+F(x)
+=
+\sum_{n=1}^{\infty}
+c_n b^{x^n}.
+\]
+
+The behaviour depends strongly on both \(x\) and \(b\).
+
+% -------------------------------------------------
+\subsection{The Region \texorpdfstring{$|x|<1$}{|x|<1}}
+% -------------------------------------------------
+
+If
+
+\[
+|x|<1,
+\]
+
+then
+
+\[
+x^n\longrightarrow0.
+\]
+
+Consequently,
+
+\[
+b^{x^n}\longrightarrow1.
+\]
+
+Thus
+
+\[
+c_nb^{x^n}
+\sim c_n.
+\]
+
+In particular, if
+
+\[
+c_n=1,
+\]
+
+then
+
+\[
+b^{x^n}\longrightarrow1,
+\]
+
+so the terms do not approach zero and
+
+\[
+\sum_{n=1}^{\infty}b^{x^n}
+\]
+
+diverges.
+
+More generally, in the region \(|x|<1\), convergence is controlled
+primarily by the coefficient sequence \(c_n\).
+
+% -------------------------------------------------
+\subsection{The Point \texorpdfstring{$x=1$}{x=1}}
+% -------------------------------------------------
+
+At
+
+\[
+x=1,
+\]
+
+we have
+
+\[
+x^n=1.
+\]
+
+Therefore
+
+\[
+F(1)
+=
+\sum_{n=1}^{\infty}c_nb.
+\]
+
+Hence
+
+\[
+\boxed{
+F(1)=b\sum_{n=1}^{\infty}c_n.
+}
+\]
+
+Thus convergence at \(x=1\) is exactly the same as convergence of
+
+\[
+\sum c_n.
+\]
+
+% -------------------------------------------------
+\subsection{The Point \texorpdfstring{$x=0$}{x=0}}
+% -------------------------------------------------
+
+At
+
+\[
+x=0,
+\]
+
+we have
+
+\[
+0^n=0.
+\]
+
+Thus
+
+\[
+b^{0^n}=1
+\]
+
+and
+
+\[
+\boxed{
+F(0)
+=
+\sum_{n=1}^{\infty}c_n.
+}
+\]
+
+Again, convergence is determined directly by the coefficients.
+
+% -------------------------------------------------
+\subsection{The Region \texorpdfstring{$x>1$}{x>1} with \texorpdfstring{$b>1$}{b>1}}
+% -------------------------------------------------
+
+Suppose
+
+\[
+x>1
+\]
+
+and
+
+\[
+b>1.
+\]
+
+Then
+
+\[
+x^n\longrightarrow+\infty.
+\]
+
+Therefore
+
+\[
+b^{x^n}\longrightarrow+\infty.
+\]
+
+If \(c_n=1\), the terms themselves grow without bound.
+
+For convergence we require at least
+
+\[
+\boxed{
+c_nb^{x^n}\longrightarrow0.
+}
+\]
+
+Thus the coefficients must decay extremely rapidly.
+
+% -------------------------------------------------
+\subsection{The Region \texorpdfstring{$x>1$}{x>1} with \texorpdfstring{$0<b<1$}{0<b<1}}
+% -------------------------------------------------
+
+Now suppose
+
+\[
+0<b<1.
+\]
+
+Then
+
+\[
+b^{x^n}\longrightarrow0
+\]
+
+extremely rapidly.
+
+Consider the ratio
+
+\[
+\frac{b^{x^{n+1}}}{b^{x^n}}
+=
+b^{x^{n+1}-x^n}.
+\]
+
+Since
+
+\[
+x^{n+1}-x^n
+=
+x^n(x-1),
+\]
+
+we obtain
+
+\[
+\boxed{
+\frac{b^{x^{n+1}}}{b^{x^n}}
+=
+b^{x^n(x-1)}.
+}
+\]
+
+Because
+
+\[
+x^n(x-1)\to\infty
+\]
+
+and \(0<b<1\),
+
+\[
+b^{x^n(x-1)}
+\longrightarrow0.
+\]
+
+Therefore
+
+\[
+\sum_{n=1}^{\infty}b^{x^n}
+\]
+
+converges for every \(x>1\).
+
+The decay is faster than ordinary geometric decay.
+
+% -------------------------------------------------
+\subsection{Negative Values with \texorpdfstring{$x<-1$}{x<-1}}
+% -------------------------------------------------
+
+Negative values introduce a new phenomenon.
+
+Let
+
+\[
+x=-r,
+\qquad
+r>1.
+\]
+
+Then
+
+\[
+x^n=(-1)^nr^n.
+\]
+
+Therefore, for even \(n\),
+
+\[
+x^n=r^n,
+\]
+
+while for odd \(n\),
+
+\[
+x^n=-r^n.
+\]
+
+Hence
+
+\[
+b^{x^n}
+=
+\begin{cases}
+b^{r^n}, & n\text{ even},\\[4pt]
+b^{-r^n}, & n\text{ odd}.
+\end{cases}
+\]
+
+If
+
+\[
+b>1,
+\]
+
+the even-indexed blocks explode while the odd-indexed blocks decay.
+
+If
+
+\[
+0<b<1,
+\]
+
+the opposite happens.
+
+Thus one parity tends to zero while the other tends to infinity.
+
+This creates a strong asymmetry that does not occur for \(x>0\).
+
+% =================================================
+\section{A Simple Example}
+% =================================================
+
+Consider
+
+\[
+b=\frac12
+\]
+
+and
+
+\[
+x=2.
+\]
+
+Then
+
+\[
+b^{x^n}
+=
+\left(\frac12\right)^{2^n}.
+\]
+
+The first terms are
+
+\[
+\frac{1}{2^2},
+\qquad
+\frac{1}{2^4},
+\qquad
+\frac{1}{2^8},
+\qquad
+\frac{1}{2^{16}},
+\qquad
+\frac{1}{2^{32}},
+\ldots
+\]
+
+or
+
+\[
+\frac14,
+\qquad
+\frac1{16},
+\qquad
+\frac1{256},
+\qquad
+\frac1{65536},
+\ldots.
+\]
+
+The exponent itself grows exponentially:
+
+\[
+2^n,
+\]
+
+and this exponential quantity appears inside another exponential.
+
+This explains the extremely rapid decay.
+
+% =================================================
